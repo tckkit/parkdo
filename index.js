@@ -13,6 +13,15 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/login.html", (req, res) => {
+  res.render("login");
+});
+
+app.get("/signup.html", (req, res) => {
+  res.render("signup");
+});
+
+
 app.listen(3000, () => {
   console.log(`Listening on 3000`);
 });
