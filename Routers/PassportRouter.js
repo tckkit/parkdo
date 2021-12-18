@@ -3,6 +3,7 @@ const passport = require("passport");
 module.exports = (express) => {
   const router = express.Router();
 
+  // check to see if the user is logged in or not
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
@@ -11,29 +12,55 @@ module.exports = (express) => {
     res.redirect("/login"); // or redirect to '/signup'
   }
 
+  // protected page
   router.get("/secret", isLoggedIn, (req, res) => {
-    res.send("Here you go, a secret");
+    console.log(req.session.passport.user.id);
+    res.render("secret");
   });
 
+  // logout route
+  router.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/login");
+  });
+
+  router.get("/loggedIn", isLoggedIn, (req, res) => {
+    console.log(req.session.passport.user.id);
+    console.log("hello");
+    res.send(`logged in `);
+  });
+
+  //error page
+  router.get("/error", (req, res) => {
+    res.send("You are not logged in!");
+  });
+
+  //login route
   router.get("/login", (req, res) => {
-    res.sendFile(__dirname + "/login.html");
+    res.render("login");
   });
 
   router.post(
     "/login",
     passport.authenticate("local-login", {
-      successRedirect: "/",
+      successRedirect: "/secret",
+      failureRedirect: "/error",
+    })
+    // res.render("secret");
+  );
+
+  // signup route
+  router.get("/signup", (req, res) => {
+    res.render("signup");
+  });
+
+  router.post(
+    "/signup",
+    passport.authenticate("local-signup", {
+      successRedirect: "/login",
       failureRedirect: "/error",
     })
   );
-
-  router.get("/error", (req, res) => {
-    res.send("You are not logged in!");
-  });
-
-  router.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
-  });
 
   return router;
 };

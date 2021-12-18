@@ -1,10 +1,28 @@
-// Import all required modules
+// Express required modules
 const express = require("express");
 const app = express();
 app.use(express.static("public"));
 
-// Handlebars
+// Passport.js required modules
+const session = require("express-session");
+const setupPassport = require("./passport");
+const passportRouter = require("./Routers/PassportRouter")(express);
+const port = process.env.PORT || 3000;
+app.use(
+  session({
+    secret: "supersecret",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+setupPassport(app);
+app.use("/", passportRouter);
+
+// Handlebars required modules
 const { engine } = require("express-handlebars");
+// const { Passport } = require("passport");
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", "./views");
@@ -13,15 +31,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/login.html", (req, res) => {
-  res.render("login");
-});
-
-app.get("/signup.html", (req, res) => {
-  res.render("signup");
-});
-
-
-app.listen(3000, () => {
-  console.log(`Listening on 3000`);
+app.listen(port, () => {
+  console.log(`Listening on ${port}`);
 });

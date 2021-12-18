@@ -1,13 +1,8 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const knex = require("knex")({
-  client: "postgresql",
-  connection: {
-    database: process.env.DB_NAME,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-  },
-});
+const bcrypt = require("./bcrypt");
+const knexFile = require("./knexfile");
+const knex = require("knex")(knexFile.development);
 
 module.exports = (app) => {
   app.use(passport.initialize());
@@ -19,16 +14,41 @@ module.exports = (app) => {
       try {
         let users = await knex("account").where({ username: username });
         if (users.length == 0) {
-          return done(null, false, { message: "Incorrect credentials." });
+          return done(null, false, { message: "Incorrect user." });
         }
         let user = users[0];
-        if (user.password === password) {
+        let result = await bcrypt.checkPassword(password, user.password);
+        if (result) {
           return done(null, user);
         } else {
-          return done(null, false, { message: "Incorrect credentials." });
+          return done(null, false, {
+            message: "Incorrect username or password",
+          });
         }
       } catch (err) {
         return done(err);
+      }
+    })
+  );
+
+  passport.use(
+    "local-signup",
+    new LocalStrategy(async (email, password, done) => {
+      try {
+        let users = await knex("account").where({ email: email });
+        if (users.length > 0) {
+          return done(null, false, { message: "Email already taken" });
+        }
+        let hash = await bcrypt.hashPassword(password);
+        const newUser = {
+          email: email,
+          password: hash,
+        };
+        let userId = await knex("account").insert(newUser).returning("id");
+        newUser.id = userId[0];
+        done(null, newUser);
+      } catch (err) {
+        done(err);
       }
     })
   );
