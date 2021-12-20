@@ -225,6 +225,27 @@
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.login-with-facebook {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-bottom: 10px;
 }
 
 .button-text {

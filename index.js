@@ -3,14 +3,24 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 
+//https set up
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+  cert: fs.readFileSync('./localhost.crt'),
+  key: fs.readFileSync('./localhost.key')
+};
+
+
 // Passport.js required modules
 const session = require("express-session");
 const setupPassport = require("./passport");
 const passportRouter = require("./Routers/PassportRouter")(express);
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000; 
 app.use(
   session({
-    secret: "supersecret",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
   })
@@ -31,6 +41,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(port, () => {
-  console.log(`Listening on ${port}`);
+https.createServer(options, app).listen(port, () => {
+  console.log(`application listening to https://localhost:${port}`);
 });

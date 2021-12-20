@@ -13,7 +13,7 @@
     <h3 class="heading">Login</h3>
     <div class="form-block w-form">
       {{!-- /login POST --}}
-      <form action="/login" method="post" id="email-form" name="email-form" data-name="Email Form" method="get" class="form-2">
+      <form action="/login" method="post" id="login-form" name="ogin-form" data-name="Login Form" class="form-2">
         <label for="username" class="form-label">Username</label>
         {{!-- below input is used in preparing passport (username) --}}
         <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="" id="username">
@@ -21,11 +21,14 @@
         {{!-- below input is used in preparing passport (password) --}}
         <input type="password" class="w-input" maxlength="256" name="password" data-name="password" placeholder="" id="password" required="">
         <input type="submit" value="Login" data-wait="Please wait..." class="login-button w-button"></form>
-      <div class="login-fail">
-        <div>Oops! Something went wrong while submitting the form.</div>
-      </div>
     </div>
+    <a href="/auth/facebook">
+        <div class="login-with-facebook"><img src="images/facebook.jpeg" loading="lazy" width="30" height="30" alt="" class="facebook-icon">
+      <div class="button-text">Login with Facebook</div>
+    </div></a>
+      <a href="/auth/google">
     <div class="login-with-google"><img src="images/google.jpeg" loading="lazy" width="30" height="30" alt="" class="google-icon">
       <div class="button-text">Login with Google</div>
     </div>
+    </a>
   </div>

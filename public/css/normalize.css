@@ -77,14 +77,20 @@ template {
  */
 a {
   background-color: transparent;
+  color: black;
+  text-decoration: none;
 }
 /**
  * Improve readability of focused elements when they are also in an
  * active/hover state.
  */
+a:link,
 a:active,
-a:hover {
+a:hover,
+a:visited {
   outline: 0;
+  color: black;
+  text-decoration: none;
 }
 /* Text-level semantics
    ========================================================================== */
