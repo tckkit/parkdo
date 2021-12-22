@@ -3,21 +3,37 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 
+// knex and .env
+const env = require("dotenv");
+const knexConfig = require("./knexfile").development;
+const knex = require("knex")(knexConfig);
+
+// OrderService set up
+const OrderService = require("./Services/OrderService");
+const orderService = new OrderService(knex);
+
+// ListingService set up
+const ListingService = require("./Services/ListingService");
+const listingService = new ListingService(knex);
+
+// ViewRouter set up
+const ViewRouter = require("./Routers/ViewRouter");
+const viewRouter = new ViewRouter(express, orderService);
+
 //https set up
-const https = require('https');
-const fs = require('fs');
+const https = require("https");
+const fs = require("fs");
 
 const options = {
-  cert: fs.readFileSync('./localhost.crt'),
-  key: fs.readFileSync('./localhost.key')
+  cert: fs.readFileSync("./localhost.crt"),
+  key: fs.readFileSync("./localhost.key"),
 };
-
 
 // Passport.js required modules
 const session = require("express-session");
-const setupPassport = require("./passport");
+const setupPassport = require("./Services/PassportService");
 const passportRouter = require("./Routers/PassportRouter")(express);
-const port = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000;
 app.use(
   session({
     secret: process.env.SECRET,
@@ -37,9 +53,7 @@ app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/", viewRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);

@@ -1,3 +1,4 @@
+const express = require("express");
 const passport = require("passport");
 
 module.exports = (express) => {
@@ -8,7 +9,6 @@ module.exports = (express) => {
     if (req.isAuthenticated()) {
       return next();
     }
-
     res.redirect("/login"); // or redirect to '/signup'
   }
 
@@ -32,7 +32,9 @@ module.exports = (express) => {
 
   //error page
   router.get("/error", (req, res) => {
-    res.send("You are not logged in!");
+    res.send(
+      `You are not logged in! <br><a href="login" class="w-nav-link">Back to log in page</a>`
+    );
   });
 
   //login route
@@ -68,7 +70,7 @@ module.exports = (express) => {
       scope: ["email", "public_profile"],
     })
   );
-  
+
   router.get(
     "/auth/facebook/callback",
     passport.authenticate("facebook", {
@@ -79,9 +81,11 @@ module.exports = (express) => {
 
   router.get(
     "/auth/google",
-  passport.authenticate('google', { 
-    scope: ['profile'] }));
-  
+    passport.authenticate("google", {
+      scope: ["profile"],
+    })
+  );
+
   router.get(
     "/auth/google/callback",
     passport.authenticate("google", {
