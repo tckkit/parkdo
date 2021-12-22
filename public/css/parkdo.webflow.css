@@ -1,3 +1,102 @@
+.w-checkbox {
+  display: block;
+  margin-bottom: 5px;
+  padding-left: 20px;
+}
+
+.w-checkbox::before {
+  content: ' ';
+  display: table;
+  -ms-grid-column-span: 1;
+  grid-column-end: 2;
+  -ms-grid-column: 1;
+  grid-column-start: 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: 2;
+  -ms-grid-row: 1;
+  grid-row-start: 1;
+}
+
+.w-checkbox::after {
+  content: ' ';
+  display: table;
+  -ms-grid-column-span: 1;
+  grid-column-end: 2;
+  -ms-grid-column: 1;
+  grid-column-start: 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: 2;
+  -ms-grid-row: 1;
+  grid-row-start: 1;
+  clear: both;
+}
+
+.w-checkbox-input {
+  float: left;
+  margin-bottom: 0px;
+  margin-left: -20px;
+  margin-right: 0px;
+  margin-top: 4px;
+  line-height: normal;
+}
+
+.w-checkbox-input--inputType-custom {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-top-color: #ccc;
+  border-bottom-color: #ccc;
+  border-left-color: #ccc;
+  border-right-color: #ccc;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+  width: 12px;
+  height: 12px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.w-checkbox-input--inputType-custom.w--redirected-checked {
+  background-color: #3898ec;
+  border-top-color: #3898ec;
+  border-bottom-color: #3898ec;
+  border-left-color: #3898ec;
+  border-right-color: #3898ec;
+  background-image: url('https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg');
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.w-checkbox-input--inputType-custom.w--redirected-focus {
+  box-shadow: 0px 0px 3px 1px #3898ec;
+}
+
+.w-layout-grid {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-columns: 1fr;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto auto;
+  grid-template-rows: auto auto;
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+}
+
+a {
+  text-decoration: underline;
+}
+
+a.w--current {
+  color: #ececec;
+}
+
 .navbar {
   background-color: #fff;
 }
@@ -55,10 +154,19 @@
 }
 
 .submit-button {
-  margin-top: 10px;
+  width: 100%;
+  margin-top: 20px;
   border-radius: 25px;
   background-color: #036;
-  text-align: left;
+  text-align: center;
+}
+
+.submit-button.filtering {
+  width: auto;
+  padding: 7px 30px;
+  border: 2px solid #036;
+  background-color: transparent;
+  color: #036;
 }
 
 .div-block-2 {
@@ -157,7 +265,20 @@
   text-transform: capitalize;
 }
 
-.login {
+.heading.filtering {
+  margin-bottom: 0px;
+}
+
+.heading.small {
+  margin-bottom: 10px;
+  color: #036;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.carpark-reg {
   padding: 60px 35vw;
 }
 
@@ -190,6 +311,7 @@
 
 .form-block {
   display: block;
+  margin-top: 20px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -313,5 +435,249 @@
 .text-block-8 {
   margin-bottom: 40px;
   text-align: center;
+}
+
+.text-block-9 {
+  font-size: 10px;
+}
+
+.hint-text {
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-style: normal;
+  text-align: center;
+}
+
+.navbar-2 {
+  background-color: transparent;
+}
+
+.div-block-9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.floor-input {
+  width: 50%;
+  margin-right: 10px;
+}
+
+.unit-input {
+  width: 50%;
+}
+
+.columns {
+  margin-top: 40px;
+  padding-right: 10vw;
+  padding-left: 10vw;
+}
+
+.body-3 {
+  font-family: 'Readex Pro', sans-serif;
+}
+
+.checkbox-field {
+  margin-bottom: 0px;
+  margin-left: 10px;
+  font-size: 10px;
+}
+
+.checkbox-field.district {
+  margin-left: 0px;
+}
+
+.checkbox-label {
+  font-size: 12px;
+}
+
+.checkbox-label.district {
+  font-weight: 600;
+}
+
+.listing {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.div-block-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #dedede;
+}
+
+.div-block-11 {
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.heading-4 {
+  margin-bottom: 0px;
+}
+
+.div-block-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 120px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.pricing {
+  font-size: 20px;
+  text-align: center;
+}
+
+.pricing.currency {
+  font-size: 11px;
+}
+
+.text-block-10 {
+  font-size: 11px;
+}
+
+.text-block-11 {
+  font-size: 11px;
+}
+
+.description {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.div-block-13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 140px;
+  padding-top: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.text-field-4 {
+  width: 100%;
+}
+
+.text-field-5 {
+  width: 100%;
+}
+
+.vehicle-size {
+  color: #555;
+}
+
+.carpak-availability-text {
+  font-size: 11px;
+  text-align: center;
+}
+
+.carpak-availability-text.time {
+  font-size: 16px;
+}
+
+.div-block-14 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #ececec;
+}
+
+.account {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.image-2 {
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 3px 3px #ececec;
+}
+
+.profile {
+  width: 30%;
+  min-width: 400px;
+  margin-top: 20px;
+}
+
+.profile-info {
+  grid-column-gap: 10px;
+  grid-row-gap: 5px;
+  -ms-grid-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr;
+}
+
+.subm {
+  margin-top: 20px;
+  color: #036;
+  text-align: center;
+}
+
+.my-parking-slot {
+  margin-top: 60px;
+  padding-right: 15vw;
+  padding-left: 15vw;
+}
+
+.text-block-12 {
+  text-align: center;
+}
+
+.text-block-13 {
+  margin-top: 10px;
+}
+
+.image-3 {
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.image-4 {
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.nav-link {
+  color: #333;
+}
+
+.nav-link.w--current {
+  border-bottom: 2px solid #333;
+  color: #333;
 }
 

@@ -1,28 +1,16 @@
-    <div class="container w-container">
-      <a href="/" class="w-nav-brand"><img src="images/Parkdo_icon.png" loading="lazy" width="150" sizes="150px" srcset="images/Parkdo_icon.png 500w, images/Parkdo_icon.png 800w, images/Parkdo_icon.png 1080w, images/Parkdo_icon.png 1500w" alt="" class="image"></a>
-      <nav role="navigation" class="nav-menu w-nav-menu">
-        <a href="#" class="w-nav-link">Contact us</a>
-        <a href="signup" class="w-nav-link">Sign up</a>
-      </nav>
-      <div class="w-nav-button">
-        <div class="w-icon-nav-menu"></div>
-      </div>
-    </div>
-  </div>
-  <div class="login wf-section">
+{{> navbar-guest }}
+
+  <div class="carpark-reg wf-section">
     <h3 class="heading">Login</h3>
     <div class="form-block w-form">
-      {{!-- /login POST --}}
-      <form action="/login" method="post" id="login-form" name="ogin-form" data-name="Login Form" class="form-2">
+      <form action="/login" id="email-form" name="email-form" data-name="Email Form" method="post" class="form-2">
         <label for="username" class="form-label">Username</label>
-        {{!-- below input is used in preparing passport (username) --}}
-        <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="" id="username">
-        <label for="password" class="form-label">Password</label>
-        {{!-- below input is used in preparing passport (password) --}}
-        <input type="password" class="w-input" maxlength="256" name="password" data-name="password" placeholder="" id="password" required="">
+        <input type="text" class="w-input" maxlength="256" name="username" data-name="Name" placeholder="" id="username">
+        <label for="password" class="field-label-3">Password</label>
+        <input type="password" class="w-input" maxlength="256" name="password" data-name="Email" placeholder="" id="password" required="">
         <input type="submit" value="Login" data-wait="Please wait..." class="login-button w-button"></form>
     </div>
-    <a href="/auth/facebook">
+       <a href="/auth/facebook">
         <div class="login-with-facebook"><img src="images/facebook.jpeg" loading="lazy" width="30" height="30" alt="" class="facebook-icon">
       <div class="button-text">Login with Facebook</div>
     </div></a>
@@ -31,4 +19,5 @@
       <div class="button-text">Login with Google</div>
     </div>
     </a>
+
   </div>

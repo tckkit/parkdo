@@ -45,8 +45,8 @@ module.exports = (express) => {
   router.post(
     "/login",
     passport.authenticate("local-login", {
-      successRedirect: "/secret",
-      failureRedirect: "/error",
+      successRedirect: "/parkingslot.html",
+      failureRedirect: "/login.html",
     })
     // res.render("secret");
   );
