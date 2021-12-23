@@ -33,7 +33,7 @@ class ViewRouter {
     res.render("signup"); // TBC
   }
   getHistory(req, res) {
-    res.render("index"); // TBC
+    res.render("history"); // TBC
   }
   getContactUs(req, res) {
     res.render("index"); // TBC
