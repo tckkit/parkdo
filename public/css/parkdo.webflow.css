@@ -330,11 +330,12 @@ a.w--current {
   background-color: #036;
 }
 
-.login-with-google {
+.login-with-social-media {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 5px;
   padding-top: 2px;
   padding-bottom: 2px;
   -webkit-box-pack: center;
@@ -347,27 +348,6 @@ a.w--current {
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 20px;
-  margin-bottom: 10px;
-}
-
-.login-with-facebook {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  margin-bottom: 10px;
 }
 
 .button-text {
@@ -676,4 +656,218 @@ a.w--current {
   color: #333;
 }
 
+.nav-link.w--current {
+  border-bottom: 2px solid #333;
+  color: #333;
+}
+
+.grid {
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.table-heading {
+  text-align: center;
+}
+
+.section-2 {
+  padding-right: 10vw;
+  padding-left: 10vw;
+}
+
+.booking-type-label {
+  margin: 5px;
+  padding: 8px 40px;
+  border-radius: 5px;
+  background-color: #ececec;
+  color: #036;
+  font-size: 16px;
+  text-align: center;
+}
+
+.booking-type-label.lease {
+  width: 120px;
+  padding-right: 0px;
+  padding-left: 0px;
+  background-color: #96c6be;
+  color: #333;
+}
+
+.booking-type-label.rent {
+  width: 120px;
+  padding-right: 0px;
+  padding-left: 0px;
+  background-color: #f19a8c;
+  color: #333;
+}
+
+.box-label {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.box {
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  -ms-grid-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+}
+
+.box-item-text {
+  color: #333;
+  text-align: center;
+}
+
+.b {
+  text-align: center;
+}
+
+.date-box {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #ececec;
+  text-align: center;
+}
+
+.box-item {
+  text-align: center;
+  text-decoration: none;
+}
+
+.box-item.in {
+  text-decoration: underline;
+}
+
+.box-item.out {
+  text-decoration: underline;
+}
+
+.history-box {
+  height: 120px;
+  padding: 10px;
+  border-bottom: 1px solid #ececec;
+}
+
+.text-block-18 {
+  font-size: 10px;
+  text-align: center;
+}
+
+.box-status {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #666;
+}
+
+.box-status.complete {
+  color: #4fbca3;
+}
+
+.box-status.cancel {
+  color: #e25a44;
+}
+
+.booking-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.div-block-15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#w-node-_80cd77a3-814e-c532-02e5-8097c3bc33b8-5854d6b5 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 2;
+  grid-row-start: span 2;
+  -ms-grid-row-span: 2;
+  grid-row-end: span 2;
+  -ms-grid-column-align: center;
+  justify-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+}
+
+#w-node-_3765c99e-745b-1dc5-1704-d3cfcfbfd091-5854d6b5 {
+  -ms-grid-column: span 2;
+  grid-column-start: span 2;
+  -ms-grid-column-span: 2;
+  grid-column-end: span 2;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
+#w-node-_0d8ce5b9-4e8c-e8ac-7835-80c35d8ce4bb-5854d6b5 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 2;
+  grid-row-start: span 2;
+  -ms-grid-row-span: 2;
+  grid-row-end: span 2;
+  -ms-grid-column-align: center;
+  justify-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+}
+
+#w-node-_0d8ce5b9-4e8c-e8ac-7835-80c35d8ce4bd-5854d6b5 {
+  -ms-grid-column: span 2;
+  grid-column-start: span 2;
+  -ms-grid-column-span: 2;
+  grid-column-end: span 2;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
 
