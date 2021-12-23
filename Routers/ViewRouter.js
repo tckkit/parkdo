@@ -1,9 +1,10 @@
 const { json } = require("body-parser");
 
 class ViewRouter {
-  constructor(express, orderService) {
+  constructor(express, orderService, app) {
     this.express = express;
     this.orderService = orderService;
+    this.app = app;
   }
 
   router() {
@@ -39,15 +40,21 @@ class ViewRouter {
   // }
   async getHistory(req, res) {
     try {
-      let history = await this.axios
-        .get("https://localhost:3000/api/v1/history")
-        .then(history);
-      res.render("history", JSON.parse(history));
-      console.log(history);
+      await this.app.$get("/api/v1/all/history").done(function (data) {
+        console.log("hello");
+        console.log(data);
+      });
+      // res.render("history", JSON.parse(history));
+      // console.log(history);
     } catch {
       console.log("error");
     }
   }
+  //   $.get("/api/v1/all/history").done(function (data){
+  //     console.log("hello");
+  //     console.log(data);
+  // })
+
   getContactUs(req, res) {
     res.render("index"); // TBC
   }
