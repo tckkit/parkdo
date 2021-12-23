@@ -603,10 +603,14 @@ a.w--current {
   align-items: center;
 }
 
-.image-2 {
+.account-image {
   border: 3px solid #fff;
   border-radius: 50%;
   box-shadow: 0 3px 3px 3px #ececec;
+}
+
+.account-image.parking-slot {
+  border-radius: 10px;
 }
 
 .profile {
@@ -817,6 +821,51 @@ a.w--current {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.text-block-19 {
+  margin-top: 10px;
+}
+
+.section-3 {
+  padding-right: 25vw;
+  padding-left: 25vw;
+}
+
+.section-4 {
+  margin-top: 60px;
+  padding-right: 25vw;
+  padding-left: 25vw;
+}
+
+.column-content {
+  margin-bottom: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #ececec;
+}
+
+.column {
+  text-align: center;
+}
+
+.text-block-20 {
+  text-align: center;
+}
+
+.text-block-21 {
+  text-align: center;
+}
+
+.text-block-22 {
+  border-radius: 5px;
+  background-color: #e25a44;
+  color: #fff;
+  text-align: center;
+}
+
+.textarea {
+  margin-top: 10px;
 }
 
 #w-node-_80cd77a3-814e-c532-02e5-8097c3bc33b8-5854d6b5 {
