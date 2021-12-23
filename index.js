@@ -20,6 +20,10 @@ const listingService = new ListingService(knex);
 const ViewRouter = require("./Routers/ViewRouter");
 const viewRouter = new ViewRouter(express, orderService);
 
+// ApiRouter set up
+const ApiRouter = require("./Routers/ApiRouter_v1");
+const apiRouter = new ApiRouter(express, orderService);
+
 //https set up
 const https = require("https");
 const fs = require("fs");
@@ -54,6 +58,7 @@ app.set("view engine", "handlebars");
 app.set("views", "./views");
 
 app.use("/", viewRouter.router());
+app.use("/api/v1/", apiRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);

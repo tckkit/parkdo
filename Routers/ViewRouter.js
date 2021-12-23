@@ -8,10 +8,11 @@ class ViewRouter {
 
   router() {
     const router = this.express.Router();
+    // router.get("", this.getError.bind(this));
     router.get("/", this.getHome.bind(this));
     router.get("/login", this.getLogin.bind(this));
     router.get("/signup", this.getSignUp.bind(this));
-    router.get("/history", this.getHistory.bind(this)); //Order history API
+    router.get("/history", this.getHistory.bind(this));
     router.get("/contactus", this.getContactUs.bind(this));
     router.get("/renter-registration", this.getRenterReg.bind(this));
     router.get("/parkingslot", this.getListing.bind(this));
@@ -19,6 +20,9 @@ class ViewRouter {
     return router;
   }
 
+  getError(req, res) {
+    res.send("404 Not Found");
+  }
   getHome(req, res) {
     res.render("index");
   }
@@ -29,9 +33,7 @@ class ViewRouter {
     res.render("signup"); // TBC
   }
   getHistory(req, res) {
-    this.orderService.list().then((data) => {
-      res.send(data);
-    });
+    res.render("index"); // TBC
   }
   getContactUs(req, res) {
     res.render("index"); // TBC
