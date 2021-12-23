@@ -13,7 +13,6 @@ module.exports = (app) => {
   passport.use(
     "local-login",
     new LocalStrategy(async (username, password, done) => {
-      console.log("username", username);
       try {
         let users = await knex("account").where({ username: username });
         if (users.length == 0) {
@@ -23,10 +22,8 @@ module.exports = (app) => {
         let user = users[0];
         let result = await bcrypt.checkPassword(password, user.password);
         if (result) {
-          console.log("username and password OK!");
           return done(null, user);
         } else {
-          console.log("Incorrect username or password");
           return done(null, false, {
             message: "Incorrect username or password",
           });
