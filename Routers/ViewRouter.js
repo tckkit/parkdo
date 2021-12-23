@@ -17,6 +17,7 @@ class ViewRouter {
     router.get("/renter-registration", this.getRenterReg.bind(this));
     router.get("/parkingslot", this.getListing.bind(this));
     router.get("/account", this.getAccount.bind(this));
+    router.get("/manage", this.getManage.bind(this));
     return router;
   }
 
@@ -46,6 +47,9 @@ class ViewRouter {
   }
   getAccount(req, res) {
     res.render("account");
+  }
+  getManage(req, res) {
+    res.render("manage");
   }
 }
 
