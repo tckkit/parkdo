@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 
+// axios set up
 const axios = require("axios");
 
 // knex and .env
@@ -20,7 +21,7 @@ const listingService = new ListingService(knex);
 
 // ViewRouter set up
 const ViewRouter = require("./Routers/ViewRouter");
-const viewRouter = new ViewRouter(express, orderService);
+const viewRouter = new ViewRouter(express, orderService, app);
 
 // ApiRouter set up
 const ApiRouter = require("./Routers/ApiRouter_v1");
