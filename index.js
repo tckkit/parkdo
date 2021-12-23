@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 
+const axios = require("axios");
+
 // knex and .env
 const env = require("dotenv");
 const knexConfig = require("./knexfile").development;
@@ -10,7 +12,7 @@ const knex = require("knex")(knexConfig);
 
 // OrderService set up
 const OrderService = require("./Services/OrderService");
-const orderService = new OrderService(knex);
+const orderService = new OrderService(knex, axios);
 
 // ListingService set up
 const ListingService = require("./Services/ListingService");

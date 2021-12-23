@@ -32,8 +32,20 @@ class ViewRouter {
   getSignUp(req, res) {
     res.render("signup"); // TBC
   }
-  getHistory(req, res) {
-    res.render("history"); // TBC
+  // getHistory(req, res) {
+  //   res.render("history", JSON.parse(history));
+  //   console.log(history);
+  // }
+  async getHistory(req, res) {
+    try {
+      let history = await this.axios
+        .get("https://localhost:3000/api/v1/history")
+        .then(history);
+      res.render("history", JSON.parse(history));
+      console.log(history);
+    } catch {
+      console.log("error");
+    }
   }
   getContactUs(req, res) {
     res.render("index"); // TBC

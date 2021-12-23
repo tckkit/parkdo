@@ -7,7 +7,7 @@ exports.seed = function (knex) {
       return knex("booking_record").insert([
         // Pending booking record
         {
-          tenant_id: "3",
+          tenant_id: "2",
           renter_id: "5",
           carpark_id: "6",
           // booking_start_time: "2021-12-23T11:00:00",

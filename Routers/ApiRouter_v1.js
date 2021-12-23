@@ -9,7 +9,7 @@ class ApiRouter {
   router() {
     const router = this.express.Router();
     // router.get("", this.getError.bind(this));
-    router.get("/:param/history", this.getAllHistory.bind(this)); //:param = account.id
+    router.get("/3/history", this.getAllHistory.bind(this)); //:param = account.id
     router.get("/all/history"), this.getUserHistory.bind(this);
     return router;
   }
@@ -23,7 +23,7 @@ class ApiRouter {
     });
   }
   getUserHistory(req, res) {
-    this.orderService.readUser().then((data) => {
+    this.orderService.readUser(3).then((data) => {
       res.send(data);
     });
   }

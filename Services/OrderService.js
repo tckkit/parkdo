@@ -1,6 +1,7 @@
 class OrderService {
-  constructor(knex) {
+  constructor(knex, axios) {
     this.knex = knex;
+    this.axios = axios;
   }
 
   // write(data) {
@@ -49,11 +50,11 @@ class OrderService {
     });
   }
 
-  readUser(orderId) {
+  readUser(accountId) {
     let query = this.knex
       .select()
       .from("booking_record")
-      .where("")
+      .where("tenant_id", accountId) //Example
       .orderBy("booking_record.id", "asc");
 
     return query.then((rows) => {
