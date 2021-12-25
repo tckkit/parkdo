@@ -1,4 +1,5 @@
 $(() => {
+  // form with id=add submit actions
   $("#add").submit((e) => {
     e.preventDefault();
     console.log("add pressed");

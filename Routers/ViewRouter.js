@@ -47,7 +47,7 @@ class ViewRouter {
       // res.render("history", JSON.parse(history));
       // console.log(history);
     } catch {
-      console.log("error");
+      console.log("Get history error");
     }
   }
   //   $.get("/api/v1/all/history").done(function (data){
