@@ -1,9 +1,10 @@
 const { json } = require("body-parser");
 
 class ViewRouter {
-  constructor(express, orderService) {
+  constructor(express, orderService, app) {
     this.express = express;
     this.orderService = orderService;
+    this.app = app;
   }
 
   router() {
@@ -33,9 +34,27 @@ class ViewRouter {
   getSignUp(req, res) {
     res.render("signup"); // TBC
   }
-  getHistory(req, res) {
-    res.render("history");
+  // getHistory(req, res) {
+  //   res.render("history", JSON.parse(history));
+  //   console.log(history);
+  // }
+  async getHistory(req, res) {
+    try {
+      await this.app.$get("/api/v1/all/history").done(function (data) {
+        console.log("hello");
+        console.log(data);
+      });
+      // res.render("history", JSON.parse(history));
+      // console.log(history);
+    } catch {
+      console.log("error");
+    }
   }
+  //   $.get("/api/v1/all/history").done(function (data){
+  //     console.log("hello");
+  //     console.log(data);
+  // })
+
   getContactUs(req, res) {
     res.render("index"); // TBC
   }

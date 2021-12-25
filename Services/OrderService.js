@@ -49,36 +49,6 @@ class OrderService {
       }));
     });
   }
-
-  async writeAll(order, user) {
-    try {
-      let query = await this.knex
-        .select("id")
-        .from("account")
-        .where("account.username", user);
-
-      let tenant_id = order.tenant_id;
-      let renter_id = order.renter_id;
-      let carpark_id = order.carpark_id;
-
-      const newOrder = {
-        tenant_id: tenant_id,
-        renter_id: renter_id,
-        carpark_id: carpark_id,
-      };
-      if (query.length === 1) {
-        let orderId = await this.knex
-          .insert(newOrder)
-          .into("booking_record")
-          .returning("id");
-        console.log(`A new order created, id: ${orderId}`, newOrder);
-      } else {
-        throw new Error(`Order failed to place`);
-      }
-    } catch (err) {
-      console.log("Create order error");
-    }
-  }
 }
 
 module.exports = OrderService;
