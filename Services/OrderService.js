@@ -49,6 +49,27 @@ class OrderService {
       }));
     });
   }
+
+  async writeAll(order, user) {
+    let query = await this.knex
+      .select("id")
+      .from("account")
+      .where("account.username", user);
+
+    console.log(query);
+
+    if (query.length === 1) {
+      await this.knex
+        .insert({
+          tenant_id: order.tenant_id,
+          renter_id: order.renter_id,
+          carpark_id: order.carpark_id,
+        })
+        .into("booking_record");
+    } else {
+      throw new Error(`Order failed to place`);
+    }
+  }
 }
 
 module.exports = OrderService;

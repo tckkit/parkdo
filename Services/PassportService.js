@@ -36,28 +36,43 @@ module.exports = (app) => {
 
   passport.use(
     "local-signup",
-    new LocalStrategy(async (username, password, done) => {
-      try {
-        let users = await knex("account").where({ username: username });
-        if (users.length > 0) {
-          console.log("Username already taken");
-          return done(null, false, { message: "Username already taken" });
+    new LocalStrategy(
+      {
+        usernameField: "username",
+        passwordField: "password",
+        passReqToCallback: true,
+      },
+      async (req, username, password, done) => {
+        try {
+          let users = await knex("account").where({ username: username });
+          if (users.length > 0) {
+            console.log("Username already taken");
+            return done(null, false, { message: "Username already taken" });
+          }
+
+          let hash = await bcrypt.hashPassword(password.toString());
+          let firstname = req.body.fname;
+          let lastname = req.body.lname;
+          let phone = req.body.phone;
+          let email = req.body.email;
+
+          const newUser = {
+            username: username,
+            password: hash,
+            first_name: firstname,
+            last_name: lastname,
+            phone: phone,
+            email: email,
+          };
+          let userId = await knex("account").insert(newUser).returning("id");
+          console.log(`A new user signed up, id: ${userId}`, newUser);
+          newUser.id = userId[0];
+          done(null, newUser);
+        } catch (err) {
+          done(err);
         }
-
-        let hash = await bcrypt.hashPassword(password.toString());
-
-        const newUser = {
-          username: username,
-          password: hash,
-        };
-        console.log(newUser);
-        let userId = await knex("account").insert(newUser).returning("id");
-        newUser.id = userId[0];
-        done(null, newUser);
-      } catch (err) {
-        done(err);
       }
-    })
+    )
   );
 
   // Facebook passport functions
