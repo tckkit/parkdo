@@ -10,14 +10,26 @@ class ApiRouter {
     const router = this.express.Router();
     router.get("/history", this.getAllHistory.bind(this));
     router.post("/history", this.postAllHistory.bind(this));
+    router.get("/history/:id", this.getHistory.bind(this));
     router.put("/history/:id", this.putOrder.bind(this));
     router.delete("/history/:id", this.deleteOrder.bind(this));
     return router;
   }
 
-  // GET REQUEST
+  // GET REQUEST (all history)
   getAllHistory(req, res) {
     this.orderService.readAll().then((data) => {
+      res.send(data);
+    });
+  }
+
+  // GET REQUEST (individual history) (Converted to Parkdo format)
+  getHistory(req, res) {
+    let userId = req.user;
+    let orderId = req.params.id;
+    console.log("orderId: ", orderId);
+    console.log("userId: ", userId);
+    this.orderService.read(5, orderId).then((data) => {
       res.send(data);
     });
   }
@@ -39,7 +51,7 @@ class ApiRouter {
 
   // PUT REQUEST (NOTE EXMAPLE)
   putOrder(req, res) {
-    let id = req.params.id;
+    let id = req.params.id; // /api/history/<booking_record.id>
     let note = req.body.note;
     let user = req.auth.user;
     //return this.noteService;
