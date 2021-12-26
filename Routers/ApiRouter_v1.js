@@ -8,10 +8,10 @@ class ApiRouter {
 
   router() {
     const router = this.express.Router();
-    router.get("/all/history", this.getAllHistory.bind(this));
-    router.post("/all/history", this.postAllHistory.bind(this));
-    router.put("/all/history/:id", this.putOrder.bind(this));
-    router.delete("/all/history/:id", this.deleteOrder.bind(this));
+    router.get("/history", this.getAllHistory.bind(this));
+    router.post("/history", this.postAllHistory.bind(this));
+    router.put("/history/:id", this.putOrder.bind(this));
+    router.delete("/history/:id", this.deleteOrder.bind(this));
     return router;
   }
 

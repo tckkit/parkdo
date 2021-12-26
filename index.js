@@ -61,7 +61,7 @@ app.set("view engine", "handlebars");
 app.set("views", "./views");
 
 app.use("/", viewRouter.router());
-app.use("/api/v1/", apiRouter.router());
+app.use("/api/", apiRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);

@@ -1,11 +1,10 @@
 $(() => {
-  var allHistory = $.get(`/api/v1/all/history`);
+  var allHistory = $.get(`/api/history`);
   allHistory.done(function (data) {
-    console.log(data);
-  });
-  axios.get("/history", allHistory).catch((err) => {
-    console.log(err);
-    window.location.reload();
+    axios.get("/history", data).catch((err) => {
+      console.log(err);
+      window.location.reload();
+    });
   });
 });
 
