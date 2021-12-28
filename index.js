@@ -2,6 +2,8 @@
 const express = require("express");
 const app = express();
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // axios set up
 const axios = require("axios");
@@ -26,6 +28,15 @@ const viewRouter = new ViewRouter(express, orderService);
 // ApiRouter set up
 const HistoryApiRouter = require("./Routers/HistoryApiRouter");
 const historyApiRouter = new HistoryApiRouter(express, orderService);
+
+//==================================================================
+// Create Renter Router & Service Set up
+//==================================================================
+const CreateRenter = require("./Services/CreateRenter");
+const createRenter = new CreateRenter(knex, axios);
+const RenterRouter = require("./Routers/RenterRouter");
+const renterRouter = new RenterRouter(express, createRenter);
+//==================================================================
 
 //https set up
 const https = require("https");
@@ -62,6 +73,8 @@ app.set("views", "./views");
 
 app.use("/", viewRouter.router());
 app.use("/api/history", historyApiRouter.router());
+app.use("/api/renter", renterRouter.router());
+
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);

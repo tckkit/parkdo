@@ -1,21 +1,29 @@
-const express = require("express");
-
-class NoteRouter {
-  constructor(noteService) {
-    this.noteService = noteService;
+class RenterRouter {
+  constructor(express, createRenter) {
+    this.express = express
+    this.createRenter = createRenter;
   }
 
   router() {
-    let router = express.Router();
+    let router = this.express.Router();
 
-    router.get("/", this.get.bind(this));
+    //router.get("/:id", this.get.bind(this));
     router.post("/", this.post.bind(this));
-    router.put("/:id", this.put.bind(this));
-    router.delete("/:id", this.delete.bind(this));
+    // router.put("/:id", this.put.bind(this));
+    // router.delete("/:id", this.delete.bind(this));
 
     return router;
   }
 
+  post(req, res) {
+    console.log("User: ", req.session.passport.user)
+    return this.createRenter
+    .add(req.body, req.session.passport.user)
+    .catch((err) => {
+      res.status(500).json(err)});
+  }
+
+  /*
   get(req, res) {
     console.log(req.auth.user);
     return this.noteService
@@ -25,15 +33,6 @@ class NoteRouter {
         console.log(notes);
         res.json(notes);
       })
-      .catch((err) => res.status(500).json(err));
-  }
-
-  post(req, res) {
-    console.log("Posting");
-    return this.noteService
-      .add(req.body.note, req.auth.user)
-      .then(() => this.noteService.list(req.auth.user))
-      .then((notes) => res.json(notes))
       .catch((err) => res.status(500).json(err));
   }
 
@@ -51,7 +50,7 @@ class NoteRouter {
       .then(() => this.noteService.list(req.auth.user))
       .then((notes) => res.json(notes))
       .catch((err) => res.status(500).json(err));
-  }
+  } */
 }
 
-module.exports = NoteRouter;
+module.exports = RenterRouter;

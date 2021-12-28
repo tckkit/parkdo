@@ -34,7 +34,6 @@ class OrderService {
       .orderBy("booking_record.id", "asc");
 
     return query.then((rows) => {
-      console.log(rows, "listed");
       return rows.map((row) => ({
         id: row.id,
         created_at: row.created_at,
@@ -60,7 +59,6 @@ class OrderService {
       .orderBy("booking_record.id", "asc");
 
     return query.then((rows) => {
-      console.log(rows, "listed");
       return rows.map((row) => ({
         id: row.id,
         created_at: row.created_at,
