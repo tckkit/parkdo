@@ -1,5 +1,12 @@
 const { json } = require("body-parser");
 
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login"); // or redirect to '/signup'
+}
+
 class ViewRouter {
   constructor(express, orderService) {
     this.express = express;
@@ -12,12 +19,16 @@ class ViewRouter {
     router.get("/", this.getHome.bind(this));
     router.get("/login", this.getLogin.bind(this));
     router.get("/signup", this.getSignUp.bind(this));
-    router.get("/history", this.getHistory.bind(this));
+    router.get("/history", isLoggedIn, this.getHistory.bind(this));
     router.get("/contactus", this.getContactUs.bind(this));
-    router.get("/renter-registration", this.getRenterReg.bind(this));
+    router.get(
+      "/renter-registration",
+      isLoggedIn,
+      this.getRenterReg.bind(this)
+    );
     router.get("/parkingslot", this.getListing.bind(this));
-    router.get("/account", this.getAccount.bind(this));
-    router.get("/manage", this.getManage.bind(this));
+    router.get("/account", isLoggedIn, this.getAccount.bind(this));
+    router.get("/manage", isLoggedIn, this.getManage.bind(this));
     return router;
   }
 

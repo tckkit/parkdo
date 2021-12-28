@@ -23,9 +23,17 @@ const listingService = new ListingService(knex);
 const ViewRouter = require("./Routers/ViewRouter");
 const viewRouter = new ViewRouter(express, orderService);
 
-// ApiRouter set up
+// HistoryApiRouter set up
 const HistoryApiRouter = require("./Routers/HistoryApiRouter");
 const historyApiRouter = new HistoryApiRouter(express, orderService);
+
+// AccountService set up
+const AccountService = require("./Services/AccountService");
+const accountService = new AccountService(knex, axios);
+
+// AccountApiRouter set up
+const AccountApiRouter = require("./Routers/AccountApiRouter");
+const accountApiRouter = new AccountApiRouter(express, accountService);
 
 //https set up
 const https = require("https");
@@ -62,6 +70,7 @@ app.set("views", "./views");
 
 app.use("/", viewRouter.router());
 app.use("/api/history", historyApiRouter.router());
+app.use("/api/account", accountApiRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);

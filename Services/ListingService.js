@@ -13,7 +13,7 @@ class NoteService {
         .orderBy("notes.id", "asc");
 
       return query.then((rows) => {
-        console.log(rows, "listed");
+        // console.log(rows, "listed");
         return rows.map((row) => ({
           id: row.id,
           notes: row.note,
@@ -28,7 +28,7 @@ class NoteService {
       .from("users")
       .where("users.username", user);
 
-    console.log(query);
+    // console.log(query);
 
     if (query.length === 1) {
       await this.knex

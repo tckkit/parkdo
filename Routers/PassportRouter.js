@@ -14,7 +14,7 @@ module.exports = (express) => {
 
   // protected page
   router.get("/secret", isLoggedIn, (req, res) => {
-    console.log(req.session.passport.user.id);
+    console.log("DETAILS", req.session.passport.user.id);
     res.render("secret");
   });
 
@@ -25,7 +25,7 @@ module.exports = (express) => {
   });
 
   router.get("/loggedIn", isLoggedIn, (req, res) => {
-    console.log(req.session.passport.user.id);
+    console.log(req.session.passport);
     console.log("hello");
     res.send(`logged in `);
   });

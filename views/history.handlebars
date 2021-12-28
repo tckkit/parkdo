@@ -3,13 +3,15 @@
 <div class="account wf-section">
     <img src="images/default-user-image.png" loading="lazy" width="100" height="100" alt="" class="account-image">
     <div class="profile">
-        <div style="text-align:center">Username</div>
+        <div style="text-align:center" id="username">{{username}}</div>
     </div>
 </div>
 
  
   <div class="section-2 wf-section">
-    <div class="history-block">
+
+    {{!-- Transaction A Start --}}
+    {{!-- <div class="history-block">
       <div class="history-box w-row">
         <div class="box-label w-col w-col-3">
           <div class="booking-type-label lease">Lease</div>
@@ -36,8 +38,11 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="history-block">
+    </div> --}}
+    {{!-- Transaction A End --}}
+    
+    {{!-- Transaction B Start --}}
+    {{!-- <div class="history-block">
       <div class="history-box w-row">
         <div class="box-label w-col w-col-3">
           <div class="booking-type-label rent">Rent</div>
@@ -54,7 +59,6 @@
             <div class="box-item-text">Actual</div>
             <div class="box-item-text">10:43 am</div>
             <div class="box-item-text">2:12pm</div>
-            <h1 id="h1">{{data}}</h1>
           </div>
         </div>
         <div class="booking-info w-col w-col-3">
@@ -65,5 +69,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
+    {{!-- Transaction B End --}}
+    <div id="list">{{data}}</div>
   </div>

@@ -4,29 +4,6 @@ class OrderService {
     this.axios = axios;
   }
 
-  // write(data) {
-  //   return new Promise((resolve, reject) => {
-  //     fs.writeFile(this.file, data, "utf8", (err) => {
-  //       if (err) {
-  //         reject(err);
-  //       }
-  //       resolve("Success");
-  //     });
-  //   });
-  // }
-
-  // read() {
-  //   return new Promise((resolve, reject) => {
-  //     fs.readFile(this.file, "utf8", (err, data) => {
-  //       if (err) {
-  //         console.log(err);
-  //       } else {
-  //         resolve(data);
-  //       }
-  //     });
-  //   });
-  // }
-
   readAll() {
     let query = this.knex
       .select()
@@ -34,7 +11,7 @@ class OrderService {
       .orderBy("booking_record.id", "asc");
 
     return query.then((rows) => {
-      console.log(rows, "listed");
+      // console.log(rows, "listed");
       return rows.map((row) => ({
         id: row.id,
         created_at: row.created_at,
@@ -50,17 +27,17 @@ class OrderService {
     });
   }
 
-  read(userId, orderId) {
+  read(userId) {
     let query = this.knex
       .select()
       .from("booking_record")
       .where("tenant_id", userId)
       .orWhere("renter_id", userId)
-      .andWhere("id", orderId)
+      // .andWhere("id", orderId) // Not in use
       .orderBy("booking_record.id", "asc");
 
     return query.then((rows) => {
-      console.log(rows, "listed");
+      // console.log(rows, "listed");
       return rows.map((row) => ({
         id: row.id,
         created_at: row.created_at,

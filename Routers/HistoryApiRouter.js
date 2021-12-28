@@ -1,6 +1,13 @@
 const { json } = require("body-parser");
 
-class ApiRouter {
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login"); // or redirect to '/signup'
+}
+
+class HistoryApiRouter {
   constructor(express, orderService) {
     this.express = express;
     this.orderService = orderService;
@@ -8,15 +15,17 @@ class ApiRouter {
 
   router() {
     const router = this.express.Router();
-    router.get("/", this.getAllHistory.bind(this));
     router.post("/", this.postOrder.bind(this));
-    router.get("/:id", this.getHistory.bind(this));
-    router.put("/:id", this.putOrder.bind(this));
-    router.delete("/:id", this.deleteOrder.bind(this));
+    router.get("/", isLoggedIn, this.getHistory.bind(this));
+    router.get("/all", isLoggedIn, this.getAllHistory.bind(this));
+    router.put("/:id", this.putOrder.bind(this)); // :id = booking_record.id
+    // router.get("/:id", isLoggedIn, this.getHistory.bind(this)); // Not in use
+    // router.delete("/:id", this.deleteOrder.bind(this)); // Not in use
     return router;
   }
 
   // GET REQUEST (all history)
+  // (where req.session.passport.user = account_id andWhere is_admin = True)
   getAllHistory(req, res) {
     this.orderService.readAll().then((data) => {
       res.send(data);
@@ -25,11 +34,9 @@ class ApiRouter {
 
   // GET REQUEST (individual history)
   getHistory(req, res) {
-    let userId = req.user; // Pending
-    let orderId = req.params.id;
-    console.log("orderId: ", orderId);
-    console.log("userId: ", userId);
-    this.orderService.read(5, orderId).then((data) => {
+    let userId = req.session.passport.user;
+    console.log(`userId: ${userId} GET history`);
+    this.orderService.read(userId).then((data) => {
       res.send(data);
     });
   }
@@ -78,8 +85,6 @@ class ApiRouter {
       .then((notes) => res.json(notes))
       .catch((err) => res.status(500).json(err));
   }
-
 }
 
-
-module.exports = ApiRouter;
+module.exports = HistoryApiRouter;
