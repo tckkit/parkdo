@@ -9,7 +9,7 @@ class ApiRouter {
   router() {
     const router = this.express.Router();
     router.get("/history", this.getAllHistory.bind(this));
-    router.post("/history", this.postAllHistory.bind(this));
+    router.post("/history", this.postOrder.bind(this));
     router.get("/history/:id", this.getHistory.bind(this));
     router.put("/history/:id", this.putOrder.bind(this));
     router.delete("/history/:id", this.deleteOrder.bind(this));
@@ -23,9 +23,9 @@ class ApiRouter {
     });
   }
 
-  // GET REQUEST (individual history) (Converted to Parkdo format)
+  // GET REQUEST (individual history)
   getHistory(req, res) {
-    let userId = req.user;
+    let userId = req.user; // Pending
     let orderId = req.params.id;
     console.log("orderId: ", orderId);
     console.log("userId: ", userId);
@@ -35,18 +35,18 @@ class ApiRouter {
   }
 
   // POST REQUEST (NOTE EXMAPLE) (Converted to Parkdo format)
-  postAllHistory(req, res) {
+  postOrder(req, res) {
     console.log("ApiRouter: POST Method (All History)");
     console.log("Order: " + req.body.order);
     console.log("User: " + req.auth.user);
-    return (
-      this.orderService
-        // call the add method here
-        .writeAll(req.body.order, req.auth.user)
-        .catch((err) => {
-          res.status(500).json(err);
-        })
-    );
+    const newOrder = {
+      tenant_id: 3,
+      renter_id: 2,
+      carpark_id: 2,
+    };
+    return this.orderService.writeAll(newOrder, req.auth.user).catch((err) => {
+      res.status(500).json(err);
+    });
   }
 
   // PUT REQUEST (NOTE EXMAPLE)

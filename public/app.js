@@ -1,10 +1,16 @@
 $(() => {
   var allHistory = $.get(`/api/history`);
   allHistory.done(function (data) {
-    axios.get("/history", data).catch((err) => {
-      console.log(err);
-      window.location.reload();
-    });
+    axios
+      .get("/history")
+      .then(() => {
+        let handlebarCompile = Handlebars.compile(`{{info}}`);
+        $("#h1").html(handlebarCompile({ info: data[1].status }));
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.reload();
+      });
   });
 });
 
