@@ -8,11 +8,11 @@ class ApiRouter {
 
   router() {
     const router = this.express.Router();
-    router.get("/history", this.getAllHistory.bind(this));
-    router.post("/history", this.postOrder.bind(this));
-    router.get("/history/:id", this.getHistory.bind(this));
-    router.put("/history/:id", this.putOrder.bind(this));
-    router.delete("/history/:id", this.deleteOrder.bind(this));
+    router.get("/", this.getAllHistory.bind(this));
+    router.post("/", this.postOrder.bind(this));
+    router.get("/:id", this.getHistory.bind(this));
+    router.put("/:id", this.putOrder.bind(this));
+    router.delete("/:id", this.deleteOrder.bind(this));
     return router;
   }
 
@@ -78,6 +78,8 @@ class ApiRouter {
       .then((notes) => res.json(notes))
       .catch((err) => res.status(500).json(err));
   }
+
 }
+
 
 module.exports = ApiRouter;
