@@ -3,38 +3,83 @@
   <div class="carpark-reg wf-section">
     <h3 class="heading">Become a renter</h3>
     <div class="form-block w-form">
-      <form id="wf-form-Renter-Register" name="wf-form-Renter-Register" data-name="Renter Register" method="post" class="form-2">
+      <form id="wf-form-Renter-Register" name="wf-form-Renter-Register" data-name="Renter Register" method="post" action="/api/renter" class="form-2">
         <h3 class="heading small">Renter Information</h3>
         <div class="hint-text" style="text-align:left">Your name and information provided should be the same as that shown on your HKID Card and rental agreement.</div>
+
         <div class="div-block-5">
-          <div class="name-input firstname"><label for="name" class="form-label">First Name</label><input type="text" class="text-field-3 w-input" maxlength="256" name="name" data-name="Name" placeholder="Eric" id="name" required=""></div>
-          <div class="name-input familyname"><label for="email" class="field-label-3">LAST Name</label><input type="email" class="w-input" maxlength="256" name="email" data-name="Email" placeholder="Ko" id="email"></div>
+          <div class="name-input firstname">
+            <label for="fname" class="form-label">First Name</label>
+            <input type="text" class="text-field-3 w-input" maxlength="256" name="fName" data-name="fName" placeholder="Eric" id="name" required="">
+          </div>
+
+          <div class="name-input familyname">
+            <label for="lname" class="field-label-3">LAST Name</label>
+            <input type="text" class="w-input" maxlength="256" name="lName" data-name="lName" placeholder="Ko" id="email">
+          </div>
         </div>
-        <h3 class="heading small">Parking Slot Information</h3><label for="District" class="form-label">District</label><select id="District" name="District" data-name="District" class="w-select">
-          <option value="">Select one...</option>
-          <option value="First">First choice</option>
-          <option value="Second">Second choice</option>
-          <option value="Third">Third choice</option>
-        </select><label for="Area" class="form-label">Area</label><select id="Area" name="Area" data-name="Area" class="w-select">
-          <option value="">Select one...</option>
-          <option value="First">First choice</option>
-          <option value="Second">Second choice</option>
-          <option value="Third">Third choice</option>
-        </select><label for="Building" class="form-label">Building</label><select id="Building" name="Building" data-name="Building" class="w-select">
-          <option value="">Select one...</option>
-          <option value="First">First choice</option>
-          <option value="Second">Second choice</option>
-          <option value="Third">Third choice</option>
+
+        <h3 class="heading small">Parking Slot Information</h3>
+        
+        <label for="District" class="form-label">District</label>
+        <select id="District" name="District" data-name="District" class="w-select">
+          <option value="1">Islands</option>
+          <option value="2">Kwai Tsing</option>
+          <option value="3">North</option>
+          <option value="4">Sai Kung</option>
+          <option value="5">Sha Tin</option>
+          <option value="6">Tai Po</option>
+          <option value="7">Tsuen Wan</option>
+          <option value="8">Tuen Mun</option>
+          <option value="9">Yuen Long</option>
+          <option value="10">Kowloon City</option>
+          <option value="11">Kwun Tong</option>
+          <option value="12">Sham Shui Po</option>  
+          <option value="13">Wong Tai Sin</option>  
+          <option value="14">Yau Tsim Mong</option>  
+          <option value="15">Central and Western</option>  
+          <option value="16">Eastern</option>  
+          <option value="17">Southern</option>  
+          <option value="18">Wan Chai</option>  
         </select>
+
+        <label for="Area" class="form-label">Area</label>
+        <select id="Area" name="Area" data-name="Area" class="w-select">
+          <option value="1">Kennedy Town</option>
+          <option value="2">Shek Tong Tsui</option>
+          <option value="3">Sai Ying Pun</option>
+          <option value="3">Sheung Wan</option>
+
+        </select>
+        
+        <label for="Building" class="form-label">Building</label>
+        <select id="Building" name="Building" data-name="Building" class="w-select">
+          <option value="1">Gee Tuck Building</option>
+          <option value="2">Citicorp Centre</option>
+
+
+        </select>
+
         <div class="div-block-9">
-          <div class="floor-input"><label for="field-4" class="form-label">Floor</label><input type="text" class="text-field-4 w-input" maxlength="256" name="Floor" data-name="Floor" placeholder="" id="Floor" required=""></div>
-          <div class="unit-input"><label for="Unit" class="form-label">Unit/ID</label><input type="text" class="text-field-5 w-input" maxlength="256" name="Unit" data-name="Unit" placeholder="" id="Unit" required=""></div>
-        </div><label for="Building-2" class="form-label">vehicle size</label><select id="vehicle-size" name="vehicle-size" data-name="vehicle size" class="w-select">
-          <option value="">Select one...</option>
-          <option value="First">First choice</option>
-          <option value="Second">Second choice</option>
-          <option value="Third">Third choice</option>
-        </select><label for="Description" class="form-label">Description</label><textarea placeholder="" maxlength="5000" id="Description" name="Description" data-name="field" class="w-input"></textarea><label for="Upload-Proof" class="form-label">Upload Rental Agreement</label><input type="text" class="w-input" maxlength="256" name="Upload-Proof" data-name="Upload Proof" placeholder="Example Text" id="Upload-Proof" required=""><label for="Upload-Image" class="form-label">Parking Slot Image</label><input type="text" class="w-input" maxlength="256" name="Upload-Image" data-name="Upload Image" placeholder="Example Text" id="Upload-Image" required=""><input type="submit" value="Submit Registration" data-wait="Please wait..." class="submit-button w-button">
+          <div class="floor-input"><label for="field-4" class="form-label">Floor</label>
+          <input type="text" class="text-field-4 w-input" maxlength="256" name="Floor" data-name="Floor" placeholder="" id="Floor" required=""></div>
+          <div class="unit-input"><label for="Unit" class="form-label">Unit/ID</label>
+          <input type="text" class="text-field-5 w-input" maxlength="256" name="Unit" data-name="Unit" placeholder="" id="Unit" required=""></div>
+        </div>
+        
+        <label for="Building-2" class="form-label">vehicle size</label>
+        <select id="vehicle-size" name="vehicleSize" data-name="vehicleize" class="w-select">
+          <option value="First">Motorcycles</option>
+          <option value="Second">Passenger cars</option>
+          <option value="Third">Vans</option>
+        </select>
+        <label for="Description" class="form-label">Description</label>
+        <textarea placeholder="" maxlength="5000" id="Description" name="Description" data-name="field" class="w-input"></textarea>
+        <label for="Upload-Proof" class="form-label">Upload Rental Agreement</label>
+        <input type="file" class="w-input" maxlength="256" name="Upload-Proof" data-name="Upload Proof" placeholder="Example Text" id="Upload-Proof" required="">
+        <label for="Upload-Image" class="form-label">Parking Slot Image</label>
+        <input type="file" class="w-input" maxlength="256" name="Upload-Image" data-name="Upload Image" placeholder="Example Text" id="Upload-Image" required="">
+        <input type="submit" value="Submit Registration" data-wait="Please wait..." class="submit-button w-button">
       </form>
     </div>
   </div>

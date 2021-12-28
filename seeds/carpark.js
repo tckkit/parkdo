@@ -6,7 +6,17 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex("carpark").insert([
         {
+          id: 1,
           username: "carpark1",
+          password: "password",
+          district: "Central and Western",
+          area: "Sheung Wan",
+          building: "Gee Tuck Building",
+          hourly_charge: 35,
+        },
+        {
+          id: 2,
+          username: "carpark2",
           password: "password",
           district: "Wan Chai",
           area: "Tin Hau",
