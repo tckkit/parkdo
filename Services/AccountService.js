@@ -21,6 +21,7 @@ class AccountService {
         lname: row.last_name,
         phone: row.phone,
         created_at: row.created_at,
+        verified_renter: row.is_renter,
       }));
     });
   }

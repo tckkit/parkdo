@@ -1,6 +1,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable("account", (table) => {
     table.increments();
+    table.boolean("is_renter").default(false);
     table.string("username").unique();
     table.string("first_name");
     table.string("last_name");

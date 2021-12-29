@@ -7,25 +7,25 @@ function isLoggedIn(req, res, next) {
   res.redirect("/login"); // or redirect to '/signup'
 }
 
-class AccountApiRouter {
-  constructor(express, accountService) {
+class ParkingslotApiRouter {
+  constructor(express, parkingslotService) {
     this.express = express;
-    this.accountService = accountService;
+    this.parkingslotService = parkingslotService;
   }
 
   router() {
     const router = this.express.Router();
-    router.get("/", isLoggedIn, this.getAccount.bind(this));
+    router.get("/", isLoggedIn, this.getParkingslot.bind(this));
     return router;
   }
 
   // GET REQUEST (individual account)
-  getAccount(req, res) {
+  getParkingslot(req, res) {
     let userId = req.session.passport.user;
-    this.accountService.read(userId).then((data) => {
+    this.parkingslotService.read(userId).then((data) => {
       res.send(data);
     });
   }
 }
 
-module.exports = AccountApiRouter;
+module.exports = ParkingslotApiRouter;
