@@ -1,30 +1,32 @@
-class ListingService {
-  constructor(knex, axios) {
+class ListService {
+  constructor(knex) {
     this.knex = knex;
-    this.axios = axios;
   }
 
-  read(userId) {
-    let query = this.knex
-      .select()
-      .from("account")
-      .where("id", userId)
-      .orderBy("account.id", "asc");
+  async list(start, end, location) {
+    if(start < Date.now()){
+      start = Date.now()
+    }
+    try {
+      let query = await this.knex
+        .select("*")
+        .from("availability")
+        //.innerJoin("parking_slot", "availability.parking_slot_id", "parking_slot.id")
+        //.innerJoin("carpark", "carpark.id", "parking_slot.carpark_id")
+        .where("availability.start_time",'<=', start)
+        .where("availability.end_time",'>=', end)
+        //.where("area", location )
 
-    return query.then((rows) => {
-      // console.log(rows, "listed");
-      return rows.map((row) => ({
+        console.log(query)
+
+      return query.map((row) => ({
         id: row.id,
-        username: row.username,
-        email: row.email,
-        fname: row.first_name,
-        lname: row.last_name,
-        phone: row.phone,
-        created_at: row.created_at,
-        verified_renter: row.is_renter,
       }));
-    });
+    } catch (err) {
+      console.log("List error", err);
+    }
   }
+
 }
 
-module.exports = ListingService;
+module.exports = ListService;
