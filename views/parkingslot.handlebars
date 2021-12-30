@@ -1,5 +1,7 @@
 {{> navbar-user }}
 
+ {{> add-availability-modal }}
+
   <div class="account wf-section">
     <h3 class="heading">Parking Slot</h3><img src="images/default-user-image.png" loading="lazy" width="150" height="150" alt="" class="account-image parking-slot">
     <div class="text-block-19">Upload new image</div>
@@ -22,7 +24,9 @@
     </div>
   </div>
   <div class="section-4 wf-section">
+
     <h4 class="heading">Availability</h4>
+
     <div class="column-heading w-row">
       <div class="w-col w-col-3">
         <h5 class="box-item">Date</h5>
@@ -33,8 +37,8 @@
       <div class="w-col w-col-3">
         <h5 class="box-item">End</h5>
       </div>
-      <div class="w-col w-col-3">
-        <h5 class="box-item"> </h5>
+      <div class="w-col w-col-3 ">
+        <button id="open-form"><i class="fas fa-plus-square"></i> add new availability</button>
       </div>
     </div>
     <div class="column-content w-row">
@@ -50,5 +54,6 @@
       <div class="w-col w-col-3">
         <div class="text-block-22">Delete</div>
       </div>
+      
     </div>
   </div>

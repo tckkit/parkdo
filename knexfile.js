@@ -20,6 +20,10 @@ module.exports = {
     pool: {
       min: 2,
       max: 10,
+      afterCreate: function (connection, callback) {
+        conn.query('SET timezone="UTC";', function (error) {
+          callback(error, connection);
+        });}
     },
     migrations: {
       tableName: "knex_migrations",
@@ -36,6 +40,10 @@ module.exports = {
     pool: {
       min: 2,
       max: 10,
+      afterCreate: function (connection, callback) {
+        conn.query('SET timezone="UTC";', function (error) {
+          callback(error, connection);
+        });}
     },
     migrations: {
       tableName: "knex_migrations",

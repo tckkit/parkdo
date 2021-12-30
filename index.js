@@ -17,10 +17,6 @@ const knex = require("knex")(knexConfig);
 const OrderService = require("./Services/OrderService");
 const orderService = new OrderService(knex, axios);
 
-// ListingService set up
-const ListingService = require("./Services/ListingService");
-const listingService = new ListingService(knex);
-
 // ViewRouter set up
 const ViewRouter = require("./Routers/ViewRouter");
 const viewRouter = new ViewRouter(express, orderService);
@@ -43,19 +39,21 @@ const parkingslotService = new ParkingslotService(knex, axios);
 
 // ParkingslotRouter set up
 const ParkingslotApiRouter = require("./Routers/ParkingslotApiRouter");
-const parkingslotApiRouter = new ParkingslotApiRouter(
-  express,
-  parkingslotService
-);
+const parkingslotApiRouter = new ParkingslotApiRouter(express,parkingslotService);
 
-//==================================================================
-// Create Renter Router & Service Set up
-//------------------------------------------------------------------
+// CreateRenter set up
 const CreateRenter = require("./Services/CreateRenter");
 const createRenter = new CreateRenter(knex, axios);
+// RenterRouter set up
 const RenterRouter = require("./Routers/RenterRouter");
 const renterRouter = new RenterRouter(express, createRenter);
-//==================================================================
+
+// ListingService set up
+const ListingService  = require("./Services/ListingService");
+const listingservice = new ListingService(knex, axios);
+// ListingRouter set up
+const ListingRouter = require("./Routers/ListingRouter");
+const listingRouter = new ListingRouter(express, listingservice);
 
 //https set up
 const https = require("https");
@@ -96,6 +94,7 @@ app.use("/api/history", historyApiRouter.router());
 app.use("/api/account", accountApiRouter.router());
 app.use("/api/renter", renterRouter.router());
 app.use("/api/parkingslot", parkingslotApiRouter.router());
+app.use("/api/listing", listingRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);
