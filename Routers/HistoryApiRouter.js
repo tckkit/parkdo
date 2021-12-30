@@ -35,7 +35,6 @@ class HistoryApiRouter {
   // GET REQUEST (individual history)
   getHistory(req, res) {
     let userId = req.session.passport.user;
-    //console.log(`userId: ${userId} GET history`);
     this.orderService.read(userId).then((data) => {
       res.send(data);
     });

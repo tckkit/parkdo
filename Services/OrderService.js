@@ -29,10 +29,10 @@ class OrderService {
 
   read(userId) {
     let query = this.knex
-      .select()
       .from("booking_record")
-      .where("tenant_id", userId)
-      .orWhere("renter_id", userId)
+      .innerJoin("carpark", "booking_record.carpark_id", "carpark.id")
+      .where("booking_record.tenant_id", userId)
+      .orWhere("booking_record.renter_id", userId)
       // .andWhere("id", orderId) // Not in use
       .orderBy("booking_record.id", "asc");
 
@@ -44,9 +44,15 @@ class OrderService {
         tenant_id: row.tenant_id,
         renter_id: row.renter_id,
         carpark_id: row.carpark_id,
-        // booking_start_time: row.booking_start_time,
-        // actual_start_time: row.actual_start_time,
-        // actual_end_time: row.actual_end_time,
+        carpark_name: row.username,
+        carpark_district: row.district,
+        carpark_area: row.area,
+        carpark_building: row.building,
+        carpark_hourly_charge: row.hourly_charge,
+        booking_start_time: row.booking_start_time,
+        booking_end_time: row.booking_end_time,
+        actual_start_time: row.actual_start_time,
+        actual_end_time: row.actual_end_time,
         status: row.status,
         status_last_update_time: row.updated_at,
       }));

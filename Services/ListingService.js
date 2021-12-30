@@ -1,78 +1,30 @@
-class NoteService {
-  constructor(knex) {
+class ListingService {
+  constructor(knex, axios) {
     this.knex = knex;
+    this.axios = axios;
   }
 
-  list(user) {
-    if (typeof user !== "undefined") {
-      let query = this.knex
-        .select("notes.id", "notes.note")
-        .from("notes")
-        .innerJoin("users", "notes.username_id", "users.id")
-        .where("users.username", user)
-        .orderBy("notes.id", "asc");
-
-      return query.then((rows) => {
-        // console.log(rows, "listed");
-        return rows.map((row) => ({
-          id: row.id,
-          notes: row.note,
-        }));
-      });
-    }
-  }
-
-  async add(notes, user) {
-    let query = await this.knex
-      .select("id")
-      .from("users")
-      .where("users.username", user);
-
-    // console.log(query);
-
-    if (query.length === 1) {
-      await this.knex
-        .insert({
-          note: notes,
-          username_id: query[0].id,
-        })
-        .into("notes");
-    } else {
-      throw new Error(`Cannot add a note to a user that does not exist!`);
-    }
-  }
-
-  update(id, notes, user) {
+  read(userId) {
     let query = this.knex
-      .select("id")
-      .from("users")
-      .where("users.username", user);
+      .select()
+      .from("account")
+      .where("id", userId)
+      .orderBy("account.id", "asc");
 
     return query.then((rows) => {
-      if (rows.length === 1) {
-        return this.knex("notes").where("id", id).update({
-          note: notes,
-        });
-      } else {
-        throw new Error(`Cannot update a note if the user doesn't exist!`);
-      }
-    });
-  }
-
-  remove(id, user) {
-    let query = this.knex
-      .select("id")
-      .from("users")
-      .where("users.username", user);
-
-    return query.then((rows) => {
-      if (rows.length === 1) {
-        return this.knex("notes").where("id", id).del();
-      } else {
-        throw new Error(`Cannot remove a note when the user doesn't exist!`);
-      }
+      // console.log(rows, "listed");
+      return rows.map((row) => ({
+        id: row.id,
+        username: row.username,
+        email: row.email,
+        fname: row.first_name,
+        lname: row.last_name,
+        phone: row.phone,
+        created_at: row.created_at,
+        verified_renter: row.is_renter,
+      }));
     });
   }
 }
 
-module.exports = NoteService;
+module.exports = ListingService;

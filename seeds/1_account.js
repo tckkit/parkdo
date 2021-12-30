@@ -1,6 +1,5 @@
 const bcrypt = require("../bcrypt");
 
-
 exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex("account")
@@ -16,6 +15,7 @@ exports.seed = function (knex) {
           first_name: "Moryah",
           last_name: "Ng",
           phone: 98789583,
+          is_renter: true,
         },
         {
           username: "jason",
@@ -24,6 +24,7 @@ exports.seed = function (knex) {
           first_name: "Jason",
           last_name: "Tang",
           phone: 63703506,
+          is_renter: true,
         },
         {
           username: "robert",

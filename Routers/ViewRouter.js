@@ -18,6 +18,7 @@ class ViewRouter {
     // router.get("", this.getError.bind(this));
     router.get("/", this.getHome.bind(this));
     router.get("/login", this.getLogin.bind(this));
+    router.get("/carpark-login", this.getCarparkLogin.bind(this));
     router.get("/signup", this.getSignUp.bind(this));
     router.get("/history", isLoggedIn, this.getHistory.bind(this));
     router.get("/contactus", this.getContactUs.bind(this));
@@ -40,6 +41,9 @@ class ViewRouter {
   }
   getLogin(req, res) {
     res.render("login");
+  }
+  getCarparkLogin(req, res) {
+    res.render("carpark-login");
   }
   getSignUp(req, res) {
     res.render("signup"); // TBC

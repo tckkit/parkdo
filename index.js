@@ -37,6 +37,18 @@ const accountService = new AccountService(knex, axios);
 const AccountApiRouter = require("./Routers/AccountApiRouter");
 const accountApiRouter = new AccountApiRouter(express, accountService);
 
+// ParkingslotService set up
+const ParkingslotService = require("./Services/ParkingslotService");
+const parkingslotService = new ParkingslotService(knex, axios);
+
+// ParkingslotRouter set up
+const ParkingslotApiRouter = require("./Routers/ParkingslotApiRouter");
+const parkingslotApiRouter = new ParkingslotApiRouter(
+  express,
+  parkingslotService
+);
+
+//==================================================================
 // Create Renter Router & Service Set up
 //------------------------------------------------------------------
 const CreateRenter = require("./Services/CreateRenter");
@@ -44,8 +56,6 @@ const createRenter = new CreateRenter(knex, axios);
 const RenterRouter = require("./Routers/RenterRouter");
 const renterRouter = new RenterRouter(express, createRenter);
 //==================================================================
-
-
 
 //https set up
 const https = require("https");
@@ -77,6 +87,7 @@ app.use("/", passportRouter);
 const { engine } = require("express-handlebars");
 // const { Passport } = require("passport");
 app.engine("handlebars", engine());
+// app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 
@@ -84,7 +95,7 @@ app.use("/", viewRouter.router());
 app.use("/api/history", historyApiRouter.router());
 app.use("/api/account", accountApiRouter.router());
 app.use("/api/renter", renterRouter.router());
-
+app.use("/api/parkingslot", parkingslotApiRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);
