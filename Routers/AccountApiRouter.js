@@ -22,7 +22,7 @@ class AccountApiRouter {
   // GET REQUEST (individual account)
   getAccount(req, res) {
     let userId = req.session.passport.user;
-    console.log(`userId: ${userId} GET account details`);
+    //console.log(`userId: ${userId} GET account details`);
     this.accountService.read(userId).then((data) => {
       res.send(data);
     });

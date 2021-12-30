@@ -45,7 +45,7 @@ module.exports = (express) => {
   router.post(
     "/login",
     passport.authenticate("local-login", {
-      successRedirect: "/parkingslot",
+      successRedirect: "/listing",
       failureRedirect: "/login",
     })
     // res.render("secret");
@@ -74,7 +74,7 @@ module.exports = (express) => {
   router.get(
     "/auth/facebook/callback",
     passport.authenticate("facebook", {
-      successRedirect: "/secret",
+      successRedirect: "/listing",
       failureRedirect: "/login",
     })
   );
@@ -89,7 +89,7 @@ module.exports = (express) => {
   router.get(
     "/auth/google/callback",
     passport.authenticate("google", {
-      successRedirect: "/secret",
+      successRedirect: "/listing",
       failureRedirect: "/login",
     })
   );

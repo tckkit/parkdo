@@ -1,0 +1,51 @@
+{{> navbar-user }}
+
+
+  <div class="columns w-row">
+    <div class="filter w-col w-col-3">
+      <h3 class="heading filtering">Explore</h3>
+      <div class="hint-text">Filter and explore more slots</div>
+      <div class="w-form">
+        <form id="filter-form" name="filter-form" data-name="filter Form" method="get">
+          <label for="start" class="form-label">Start</label>
+          <input type="datetime-local" class="w-input" maxlength="256" name="start" data-name="Start" placeholder="" id="filter-start">
+          <label for="end" class="form-label">End</label>
+          <input type="datetime-local" class="w-input" maxlength="256" name="end" data-name="End" placeholder="" id="filter-end" required="">
+          <label for="email-2" class="form-label">PREFERRED LOCATION</label>
+          <label class="w-checkbox checkbox-field district">
+            <input type="checkbox" name="region" id="NT" data-name="region" class="w-checkbox-input">
+            <span class="checkbox-label district w-form-label" for="region">New Territories</span></label>
+            <label class="w-checkbox checkbox-field">
+            <input type="checkbox" name="district" id="1" data-name="district" class="w-checkbox-input">
+            <span class="checkbox-label w-form-label" for="district">Islands</span></label>
+            <label class="w-checkbox checkbox-field">
+
+
+        <a href="#" class="submit-button filtering w-button">Filter</a>
+
+
+      </div>
+    </div>
+    <div class="listing w-col w-col-9">
+      <div class="div-block-10">
+        <div class="div-block-13"><img src="images/img-placeholder.png" loading="lazy" width="140" height="140" alt="" class="image-4"></div>
+        <div class="div-block-11">
+          <h5 class="heading-4 parking-slot-building">Carpark Building</h5>
+          <div class="parking-slot-area">Carpark area, Carpark district</div>
+          <div class="vehicle-size">Vehicle Size</div>
+          <div class="description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        </div>
+        <div class="div-block-12">
+          <div class="div-block-14">
+            <div class="carpak-availability-text">Available at</div>
+            <div class="carpak-availability-text time">10:00 am</div>
+            <div class="carpak-availability-text">to</div>
+            <div class="carpak-availability-text time">1:00 pm</div>
+          </div>
+          <div class="pricing">$150<br></div>
+          <div class="pricing currency">HKD/hr<br></div>
+          <a href="#" class="submit-button booking w-button">Book this !</a>
+        </div>
+      </div>
+    </div>
+  </div>
