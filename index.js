@@ -13,9 +13,13 @@ const env = require("dotenv");
 const knexConfig = require("./knexfile").development;
 const knex = require("knex")(knexConfig);
 
-// OrderService set up
-const OrderService = require("./Services/OrderService");
-const orderService = new OrderService(knex, axios);
+// HistoryService set up
+const HistoryService = require("./Services/HistoryService");
+const historyService = new HistoryService(knex, axios);
+
+// HistoryApiRouter set up
+const HistoryApiRouter = require("./Routers/HistoryApiRouter");
+const historyApiRouter = new HistoryApiRouter(express, historyService);
 
 // ListingService set up
 const ListingService = require("./Services/ListingService");
@@ -23,11 +27,7 @@ const listingService = new ListingService(knex);
 
 // ViewRouter set up
 const ViewRouter = require("./Routers/ViewRouter");
-const viewRouter = new ViewRouter(express, orderService);
-
-// HistoryApiRouter set up
-const HistoryApiRouter = require("./Routers/HistoryApiRouter");
-const historyApiRouter = new HistoryApiRouter(express, orderService);
+const viewRouter = new ViewRouter(express, historyService);
 
 // AccountService set up
 const AccountService = require("./Services/AccountService");
@@ -85,11 +85,14 @@ app.use("/", passportRouter);
 
 // Handlebars required modules
 const { engine } = require("express-handlebars");
-// const { Passport } = require("passport");
 app.engine("handlebars", engine());
-// app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", "./views");
+
+// Handlebars-helpers required modules
+const hbs = require("express-handlebars");
+const hbshelpers = require("handlebars-helpers");
+const multihelpers = hbshelpers();
 
 app.use("/", viewRouter.router());
 app.use("/api/history", historyApiRouter.router());

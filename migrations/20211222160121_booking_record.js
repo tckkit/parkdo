@@ -2,7 +2,7 @@ exports.up = function (knex) {
   return knex.schema.createTable("booking_record", (table) => {
     table.increments();
     table.integer("tenant_id").unsigned();
-    table.foreign("tenant_id").references("account.id");
+    // table.foreign("tenant_id").references("account.id");
     table.integer("renter_id").unsigned();
     // table.foreign("renter_id").references("account.id"); //NOT OK
     table.integer("carpark_id").unsigned();

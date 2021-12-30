@@ -8,15 +8,17 @@ function isLoggedIn(req, res, next) {
 }
 
 class HistoryApiRouter {
-  constructor(express, orderService) {
+  constructor(express, historyService) {
     this.express = express;
-    this.orderService = orderService;
+    this.historyService = historyService;
   }
 
   router() {
     const router = this.express.Router();
     router.post("/", this.postOrder.bind(this));
     router.get("/", isLoggedIn, this.getHistory.bind(this));
+    router.get("/lease", isLoggedIn, this.getHistoryLease.bind(this));
+    router.get("/rent", isLoggedIn, this.getHistoryRent.bind(this));
     router.get("/all", isLoggedIn, this.getAllHistory.bind(this));
     router.put("/:id", this.putOrder.bind(this)); // :id = booking_record.id
     // router.get("/:id", isLoggedIn, this.getHistory.bind(this)); // Not in use
@@ -27,15 +29,31 @@ class HistoryApiRouter {
   // GET REQUEST (all history)
   // (where req.session.passport.user = account_id andWhere is_admin = True)
   getAllHistory(req, res) {
-    this.orderService.readAll().then((data) => {
+    this.historyService.readAll().then((data) => {
       res.send(data);
     });
   }
 
-  // GET REQUEST (individual history)
+  // GET REQUEST (individual history) (lease and rent)
   getHistory(req, res) {
     let userId = req.session.passport.user;
-    this.orderService.read(userId).then((data) => {
+    this.historyService.read(userId).then((data) => {
+      res.send(data);
+    });
+  }
+
+  // GET REQUEST (individual history) (lease)
+  getHistoryLease(req, res) {
+    let userId = req.session.passport.user;
+    this.historyService.readLease(userId).then((data) => {
+      res.send(data);
+    });
+  }
+
+  // GET REQUEST (individual history) (rent)
+  getHistoryRent(req, res) {
+    let userId = req.session.passport.user;
+    this.historyService.readRent(userId).then((data) => {
       res.send(data);
     });
   }
@@ -50,9 +68,11 @@ class HistoryApiRouter {
       renter_id: 2,
       carpark_id: 2,
     };
-    return this.orderService.writeAll(newOrder, req.auth.user).catch((err) => {
-      res.status(500).json(err);
-    });
+    return this.historyService
+      .writeAll(newOrder, req.auth.user)
+      .catch((err) => {
+        res.status(500).json(err);
+      });
   }
 
   // PUT REQUEST (NOTE EXMAPLE)

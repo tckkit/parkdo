@@ -8,9 +8,9 @@ function isLoggedIn(req, res, next) {
 }
 
 class ViewRouter {
-  constructor(express, orderService) {
+  constructor(express, historyService) {
     this.express = express;
-    this.orderService = orderService;
+    this.historyService = historyService;
   }
 
   router() {
