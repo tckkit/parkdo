@@ -44,8 +44,15 @@ const ParkingslotService = require("./Services/ParkingslotService");
 const parkingslotService = new ParkingslotService(knex, axios);
 
 // ParkingslotRouter set up
+const ParkingslotRouter = require("./Routers/ParkingslotRouter");
+const parkingslotRouter = new ParkingslotRouter(express, parkingslotService);
+
+// ParkingslotApiRouter set up
 const ParkingslotApiRouter = require("./Routers/ParkingslotApiRouter");
-const parkingslotApiRouter = new ParkingslotApiRouter(express,parkingslotService);
+const parkingslotApiRouter = new ParkingslotApiRouter(
+  express,
+  parkingslotService
+);
 
 // CreateRenter set up
 const CreateRenter = require("./Services/CreateRenter");
@@ -55,25 +62,29 @@ const RenterRouter = require("./Routers/RenterRouter");
 const renterRouter = new RenterRouter(express, createRenter);
 
 // ListingService set up
-const ListingService  = require("./Services/ListingService");
+const ListingService = require("./Services/ListingService");
 const listingservice = new ListingService(knex, axios);
 // ListingRouter set up
 const ListingRouter = require("./Routers/ListingRouter");
 const listingRouter = new ListingRouter(express, listingservice);
 
 // AvailabilityService set up
-const AvailabilityService  = require("./Services/AvailabilityService");
+const AvailabilityService = require("./Services/AvailabilityService");
 const availabilityservice = new AvailabilityService(knex, axios);
 // AvailabilityRouter set up
 const AvailabilityRouter = require("./Routers/AvailabilityRouter");
 const availabilityRouter = new AvailabilityRouter(express, availabilityservice);
 
 // ProfilePic Upload Serviceset up
-const ProfilePicUpload  = require("./Services/ProfilePicUpload");
+const ProfilePicUpload = require("./Services/ProfilePicUpload");
 const profilePicUpload = new ProfilePicUpload(fs, axios, uploadDirectory);
 // ProfilePic Router set up
 const ProfilePicRouter = require("./Routers/ProfilePicRouter");
-const profilePicRouter = new ProfilePicRouter(express, fileUpload, profilePicUpload);
+const profilePicRouter = new ProfilePicRouter(
+  express,
+  fileUpload,
+  profilePicUpload
+);
 
 // ParkingSlotPic Upload Serviceset up
 //const ParkingslotPicUpload  = require("./Services/ParkingslotPicUpload");
@@ -81,7 +92,6 @@ const profilePicRouter = new ProfilePicRouter(express, fileUpload, profilePicUpl
 // ParkingSlotPic Router set up
 //const ParkingslotPicRouter = require("./Routers/ParkingslotPicRouter");
 //const parkingslotPicRouter = new ParkingslotPicRouter(express, parkingSlotPicUpload);
-
 
 //https set up
 const https = require("https");
@@ -128,6 +138,7 @@ app.use("/api/listing", listingRouter.router());
 app.use("/api/availability", availabilityRouter.router());
 app.use("/api/profilepic", profilePicRouter.router());
 
+app.use("/parkingslot", parkingslotRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);

@@ -63,6 +63,9 @@ class HistoryService {
     let query = this.knex
       .from("booking_record")
       .innerJoin("carpark", "booking_record.carpark_id", "carpark.id")
+      .innerJoin("area", "area.id", "carpark.area_id")
+      .innerJoin("district", "district.id", "area.district_id")
+      .innerJoin("region", "region.id", "district.region_id")
       // .where("booking_record.tenant_id", userId) // Not in use
       .where("booking_record.renter_id", userId)
       // .andWhere("id", orderId) // Not in use
@@ -95,6 +98,9 @@ class HistoryService {
     let query = this.knex
       .from("booking_record")
       .innerJoin("carpark", "booking_record.carpark_id", "carpark.id")
+      .innerJoin("area", "area.id", "carpark.area_id")
+      .innerJoin("district", "district.id", "area.district_id")
+      .innerJoin("region", "region.id", "district.region_id")
       .where("booking_record.tenant_id", userId)
       // .orWhere("booking_record.renter_id", userId) // Not in use
       // .andWhere("id", orderId) // Not in use
