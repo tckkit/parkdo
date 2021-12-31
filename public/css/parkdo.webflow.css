@@ -971,3 +971,17 @@ a.w--current {
   text-decoration: none;
   cursor: pointer;
 }
+
+.history-icon-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lease{
+display: none
+}
+
+#rent{
+  display: none
+  }

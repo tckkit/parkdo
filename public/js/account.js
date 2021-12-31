@@ -70,19 +70,19 @@ $(() => {
                 <div class="div-block-13"><img src="images/img-placeholder.png" loading="lazy" width="140" height="140" alt="" class="image-3">
                 </div>
                 <div class="div-block-11">
-                  <h5 class="heading-4 parking-slot-building">Carpark Building</h5>
-                  <div class="parking-slot-area">Carpark area, Carpark district</div>
-                  <div class="vehicle-size">Vehicle Size</div>
-                  <div class="description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                  <h5 class="heading-4 parking-slot-building">{{this.carpark_building}}</h5>
+                  <div class="parking-slot-area">{{this.carpark_area}}, {{this.carpark_district}} </div>
+                  <div class="vehicle-size">{{this.vehicle_size}}</div>
+                  <div class="description">{{this.vehicle_size}}</div>
                 </div>
                 <div class="div-block-12">
-                  <a href="/parkingslot" class="submit-button edit w-button">Edit</a>
+                  <a href="/parkingslot/{{this.id}}" class="submit-button edit w-button">Edit</a>
                 </div>
               </div>
           {{/each}}
         {{else}}
           <h3 class="heading">My Parking Slot</h3>
-          <div class="text-block-12">You haven not registered any parking slots yet.</div>
+          <div class="text-block-12">You have not registered any parking slots yet.</div>
         {{/if}}
             `);
         $("#parkingslotDetails").html(
@@ -94,4 +94,16 @@ $(() => {
         window.location.reload();
       });
   });
+});
+
+$("#lease-filter").click(function () {
+  console.log("clicked");
+  $("#rent").css("display", "none");
+  $("#lease").css("display", "block");
+});
+
+$("#rent-filter").click(function () {
+  console.log("clicked");
+  $("#lease").css("display", "none");
+  $("#rent").css("display", "block");
 });

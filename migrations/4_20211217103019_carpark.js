@@ -3,8 +3,7 @@ exports.up = function (knex) {
     table.increments();
     table.string("username").unique().notNullable();
     table.string("password");
-    table.string("district");
-    table.string("area");
+    table.integer("area_id").references("id").inTable("area").notNull();
     table.string("building");
     table.integer("hourly_charge");
     table.timestamps(false, true);

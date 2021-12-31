@@ -38,8 +38,15 @@ const ParkingslotService = require("./Services/ParkingslotService");
 const parkingslotService = new ParkingslotService(knex, axios);
 
 // ParkingslotRouter set up
+const ParkingslotRouter = require("./Routers/ParkingslotRouter");
+const parkingslotRouter = new ParkingslotRouter(express, parkingslotService);
+
+// ParkingslotApiRouter set up
 const ParkingslotApiRouter = require("./Routers/ParkingslotApiRouter");
-const parkingslotApiRouter = new ParkingslotApiRouter(express,parkingslotService);
+const parkingslotApiRouter = new ParkingslotApiRouter(
+  express,
+  parkingslotService
+);
 
 // CreateRenter set up
 const CreateRenter = require("./Services/CreateRenter");
@@ -49,7 +56,7 @@ const RenterRouter = require("./Routers/RenterRouter");
 const renterRouter = new RenterRouter(express, createRenter);
 
 // ListingService set up
-const ListingService  = require("./Services/ListingService");
+const ListingService = require("./Services/ListingService");
 const listingservice = new ListingService(knex, axios);
 // ListingRouter set up
 const ListingRouter = require("./Routers/ListingRouter");
@@ -98,6 +105,7 @@ app.use("/api/account", accountApiRouter.router());
 app.use("/api/renter", renterRouter.router());
 app.use("/api/parkingslot", parkingslotApiRouter.router());
 app.use("/api/listing", listingRouter.router());
+app.use("/parkingslot", parkingslotRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);
