@@ -95,3 +95,15 @@ $(() => {
       });
   });
 });
+
+$("#lease-filter").click(function () {
+  console.log("clicked");
+  $("#rent").css("display", "none");
+  $("#lease").css("display", "block");
+});
+
+$("#rent-filter").click(function () {
+  console.log("clicked");
+  $("#lease").css("display", "none");
+  $("#rent").css("display", "block");
+});
