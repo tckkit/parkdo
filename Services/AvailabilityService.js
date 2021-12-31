@@ -1,4 +1,4 @@
-class CreateRenter {
+class AvailabilityService {
     constructor(knex, axios) {
       this.knex = knex;
       this.axios = axios;
@@ -6,23 +6,19 @@ class CreateRenter {
   
 
   
-    async add(renterRegForm, userId) {
-      if (typeof userId !== "undefined") {
-        console.log("adding")
+    async add(start, end, parkingSlotId) {
+      if (typeof parkingSlotId !== "undefined") {
         try {  
           await this.knex
             .insert({
-              carpark_id: renterRegForm.Building,
-              renter_id: userId,
-              floor: renterRegForm.Floor,
-              unit: renterRegForm.Unit,
-              verified: true,
-              vehicle_size: renterRegForm.vehicleSize,
-              description: renterRegForm.Description,
+              parking_slot_id: parkingSlotId,
+              start_time: start,
+              end_time: end,
+              active: true,
             })
-            .into("parking_slot");
+            .into("availability");
         } catch (err) {
-          console.log("No such User", error);
+          console.log("Parking slot has not registered yet.", error);
         }
       }
     }
@@ -45,9 +41,9 @@ class CreateRenter {
           console.log("List error", err);
         }
       }
-    }
+    }*/
   
-    async update(id, note, user) {
+    async deactivate(id, note, user) {
       if (typeof user !== "undefined") {
         try {
           return await this.knex("notes")
@@ -58,6 +54,7 @@ class CreateRenter {
         }
       }
     }
+    /*
     async remove(id, user) {
       if (typeof user !== "undefined") {
         try {
@@ -69,4 +66,4 @@ class CreateRenter {
     } */
   }
   
-  module.exports = CreateRenter;
+  module.exports = AvailabilityService;

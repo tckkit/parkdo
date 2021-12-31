@@ -55,6 +55,27 @@ $(() => {
   });
 });
 
+// Passing account details to /account (for icon image)
+$(() => {
+  var accountDetails = $.get(`/api/account`);
+  accountDetails.done(function (data) {
+    axios
+      .get("/account")
+      .then(() => {
+        let handlebarCompile = Handlebars.compile(`
+            {{#each profilePic}}
+              <img src="/uploaded/{{this.id}}_profile.jpeg" loading="lazy" width="100" height="100" alt="" class="account-image">
+            {{/each}}
+            `);
+        $("#profilePic").html(handlebarCompile({ profilePic: data }));
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.reload();
+      });
+  });
+});
+
 // Passing parkingslot details to /account
 $(() => {
   var accountDetails = $.get(`/api/parkingslot`);

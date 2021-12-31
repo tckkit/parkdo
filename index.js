@@ -13,6 +13,12 @@ const env = require("dotenv");
 const knexConfig = require("./knexfile").development;
 const knex = require("knex")(knexConfig);
 
+// file system setup
+const fileUpload = require("express-fileupload");
+app.use(fileUpload());
+const fs = require("fs");
+const uploadDirectory = __dirname + "/public/" + "uploaded";
+
 // HistoryService set up
 const HistoryService = require("./Services/HistoryService");
 const historyService = new HistoryService(knex, axios);
@@ -55,9 +61,30 @@ const listingservice = new ListingService(knex, axios);
 const ListingRouter = require("./Routers/ListingRouter");
 const listingRouter = new ListingRouter(express, listingservice);
 
+// AvailabilityService set up
+const AvailabilityService  = require("./Services/AvailabilityService");
+const availabilityservice = new AvailabilityService(knex, axios);
+// AvailabilityRouter set up
+const AvailabilityRouter = require("./Routers/AvailabilityRouter");
+const availabilityRouter = new AvailabilityRouter(express, availabilityservice);
+
+// ProfilePic Upload Serviceset up
+const ProfilePicUpload  = require("./Services/ProfilePicUpload");
+const profilePicUpload = new ProfilePicUpload(fs, axios, uploadDirectory);
+// ProfilePic Router set up
+const ProfilePicRouter = require("./Routers/ProfilePicRouter");
+const profilePicRouter = new ProfilePicRouter(express, fileUpload, profilePicUpload);
+
+// ParkingSlotPic Upload Serviceset up
+//const ParkingslotPicUpload  = require("./Services/ParkingslotPicUpload");
+//const parkingslotPicUpload = new ParkingslotPicUpload(fs, axios);
+// ParkingSlotPic Router set up
+//const ParkingslotPicRouter = require("./Routers/ParkingslotPicRouter");
+//const parkingslotPicRouter = new ParkingslotPicRouter(express, parkingSlotPicUpload);
+
+
 //https set up
 const https = require("https");
-const fs = require("fs");
 
 const options = {
   cert: fs.readFileSync("./localhost.crt"),
@@ -98,6 +125,9 @@ app.use("/api/account", accountApiRouter.router());
 app.use("/api/renter", renterRouter.router());
 app.use("/api/parkingslot", parkingslotApiRouter.router());
 app.use("/api/listing", listingRouter.router());
+app.use("/api/availability", availabilityRouter.router());
+app.use("/api/profilepic", profilePicRouter.router());
+
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);

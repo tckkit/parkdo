@@ -21,7 +21,7 @@ module.exports = {
       min: 2,
       max: 10,
       afterCreate: function (connection, callback) {
-        conn.query('SET timezone="UTC";', function (error) {
+        conn.query('SET timezone="GMT";', function (error) {
           callback(error, connection);
         });}
     },
@@ -41,7 +41,7 @@ module.exports = {
       min: 2,
       max: 10,
       afterCreate: function (connection, callback) {
-        conn.query('SET timezone="UTC";', function (error) {
+        conn.query('SET timezone="GMT";', function (error) {
           callback(error, connection);
         });}
     },
