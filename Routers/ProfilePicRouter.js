@@ -1,14 +1,14 @@
 class ProfilePicRouter {
-    constructor(express, fileUpload, profilePicUpload) {
+    constructor(express, fs, profilePicUpload) {
       this.express = express;
-      this.fileUpload = fileUpload
+      this.fs = fs;
       this.profilePicUpload = profilePicUpload;
     }
   
     router() {
       const router = this.express.Router();
       router.post("/", this.post.bind(this));
-      //router.get("/", isLoggedIn, this.get.bind(this));
+      router.get("/", this.get.bind(this));
 
       return router;
     }
@@ -27,7 +27,15 @@ class ProfilePicRouter {
                   res.status(500).json(err)});
             }
     }
+
+    get(req, res){
+      let userId = req.session.passport.user;
+      if (this.fs.existsSync("./public/uploaded/" + userId + "_profile.jpeg")){
+        return res.send("/uploaded/" + userId + "_profile.jpeg")
+      } else {
+        return res.send("/images/" + "default-user-image.png")
+      }
   
   }
-  
+}
   module.exports = ProfilePicRouter;
