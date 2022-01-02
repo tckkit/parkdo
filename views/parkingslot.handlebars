@@ -2,9 +2,18 @@
 
  {{> add-availability-modal }}
 
+
+
+
   <div class="account wf-section">
     <h3 class="heading">Parking Slot</h3><img src="/images/default-user-image.png" loading="lazy" width="150" height="150" alt="" class="account-image parking-slot">
-    <div class="text-block-19">Upload new image</div>
+
+    <form id="parkingslot-pic-upload" method="post" action="/api/parkingslotpic" enctype="multipart/form-data">
+    <label>Upload parking slot picture</label>
+    <input type="file" name="file" accept="image/jpeg"/>
+    <input type="submit" value="update" name="submit"/>
+    </form>
+
     <div class="profile">
 
         <div class="w-layout-grid profile-info" id="parkingslotDetails">
@@ -45,20 +54,12 @@
         <button id="open-form"><i class="fas fa-plus-square"></i> add new availability</button>
       </div>
     </div>
-    <div class="column-content w-row">
-      <div class="column w-col w-col-3">
-        <div>25 Dec 2021</div>
-      </div>
-      <div class="w-col w-col-3">
-        <div class="text-block-20">10:00 am</div>
-      </div>
-      <div class="w-col w-col-3">
-        <div class="text-block-21">4:00 pm</div>
-      </div>
-      <div class="w-col w-col-3">
-        <div class="text-block-22">Delete</div>
-      </div>
-      
+    <div class="column-content w-row" id="available-table">
+
+
+
+
+
     </div>
   </div>
 

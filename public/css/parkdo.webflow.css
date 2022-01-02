@@ -985,3 +985,7 @@ display: none
 #rent{
   display: none
   }
+
+#profilepic-img{
+  object-fit: cover;
+}

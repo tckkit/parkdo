@@ -81,10 +81,7 @@ const profilePicUpload = new ProfilePicUpload(fs, axios, uploadDirectory);
 // ProfilePic Router set up
 const ProfilePicRouter = require("./Routers/ProfilePicRouter");
 const profilePicRouter = new ProfilePicRouter(
-  express,
-  fileUpload,
-  profilePicUpload
-);
+  express, fs, profilePicUpload);
 
 // ParkingSlotPic Upload Serviceset up
 //const ParkingslotPicUpload  = require("./Services/ParkingslotPicUpload");

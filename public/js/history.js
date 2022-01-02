@@ -126,3 +126,22 @@ $("#rent-filter").click(function () {
   $("#lease").css("display", "none");
   $("#rent").css("display", "block");
 });
+
+
+// Passing account details to /account (for icon image)
+$(() => {
+  var accountDetails = $.get(`/api/profilepic`);
+  accountDetails.done(function (data) {
+
+    axios
+      .get("/history")
+      .then(() => {
+        console.log(data)
+        $("#profilePic-history").html(`<img id="profilepic-img" src="${data}" loading="lazy" width="100" height="100" alt="" class="account-image">`);
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.reload();
+      });
+  });
+});

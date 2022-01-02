@@ -36,19 +36,18 @@ $(() => {
   });
 });
 
+
+
 // Passing account details to /account (for icon image)
 $(() => {
-  var accountDetails = $.get(`/api/account`);
+  var accountDetails = $.get(`/api/profilepic`);
   accountDetails.done(function (data) {
+
     axios
       .get("/account")
       .then(() => {
-        let handlebarCompile = Handlebars.compile(`
-            {{#each profilePic}}
-              <img src="/uploaded/{{this.id}}_profile.jpeg" loading="lazy" width="100" height="100" alt="" class="account-image">
-            {{/each}}
-            `);
-        $("#profilePic").html(handlebarCompile({ profilePic: data }));
+        console.log(data)
+        $("#profilePic").html(`<img id="profilepic-img" src="${data}" loading="lazy" width="100" height="100" alt="" class="account-image">`);
       })
       .catch((err) => {
         console.log(err);
