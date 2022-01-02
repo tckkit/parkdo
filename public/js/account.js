@@ -1,22 +1,3 @@
-// Passing account details to /history
-$(() => {
-  var accountDetails = $.get(`/api/account`);
-  accountDetails.done(function (data) {
-    axios
-      .get("/history")
-      .then(() => {
-        let handlebarCompile = Handlebars.compile(`
-          {{username}}
-          `);
-        $("#username").html(handlebarCompile({ username: data[0].fname }));
-      })
-      .catch((err) => {
-        console.log(err);
-        window.location.reload();
-      });
-  });
-});
-
 // Passing account details to /account
 $(() => {
   var accountDetails = $.get(`/api/account`);

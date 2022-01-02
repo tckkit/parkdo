@@ -18,7 +18,7 @@ exports.seed = function (knex) {
         {
           tenant_id: "3",
           renter_id: "5",
-          carpark_id: "1",
+          carpark_id: "2",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T14:20:00",
           status: "Cancelled",
@@ -28,7 +28,7 @@ exports.seed = function (knex) {
         {
           tenant_id: "3",
           renter_id: "5",
-          carpark_id: "1",
+          carpark_id: "3",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T14:30:00",
           status: "Confirmed",
@@ -38,7 +38,7 @@ exports.seed = function (knex) {
         {
           tenant_id: "2",
           renter_id: "4",
-          carpark_id: "2",
+          carpark_id: "4",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T15:45:00",
           actual_start_time: "2021-12-23T11:06:23",
@@ -60,7 +60,7 @@ exports.seed = function (knex) {
         {
           tenant_id: "6",
           renter_id: "2",
-          carpark_id: "2",
+          carpark_id: "3",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T15:45:00",
           actual_start_time: "2021-12-23T11:06:23",
@@ -70,7 +70,7 @@ exports.seed = function (knex) {
         {
           tenant_id: "6",
           renter_id: "1",
-          carpark_id: "2",
+          carpark_id: "4",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T15:45:00",
           actual_start_time: "2021-12-23T11:06:23",
@@ -80,7 +80,7 @@ exports.seed = function (knex) {
         {
           tenant_id: "1",
           renter_id: "5",
-          carpark_id: "2",
+          carpark_id: "5",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T15:45:00",
           actual_start_time: "2021-12-23T11:06:23",
@@ -90,7 +90,7 @@ exports.seed = function (knex) {
         {
           tenant_id: "6",
           renter_id: "2",
-          carpark_id: "2",
+          carpark_id: "6",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T15:45:00",
           actual_start_time: "2021-12-23T11:06:23",
@@ -100,7 +100,7 @@ exports.seed = function (knex) {
         {
           tenant_id: "3",
           renter_id: "5",
-          carpark_id: "2",
+          carpark_id: "4",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T15:45:00",
           actual_start_time: "2021-12-23T11:06:23",

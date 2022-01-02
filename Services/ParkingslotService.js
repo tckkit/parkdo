@@ -44,8 +44,11 @@ class ParkingslotService {
 
   readparkingslot(userId, parkingslotId) {
     let query = this.knex
-      .from("parking_slot")
-      .innerJoin("carpark", "parking_slot.carpark_id", "carpark.id")
+      .from("carpark")
+      .innerJoin("area", "area.id", "carpark.area_id")
+      .innerJoin("district", "district.id", "area.district_id")
+      .innerJoin("region", "region.id", "district.region_id")
+      .innerJoin("parking_slot", "parking_slot.carpark_id", "carpark.id")
       .where("renter_id", userId)
       .andWhere("parking_slot.id", parkingslotId)
       .orderBy("parking_slot.id", "asc");
@@ -58,7 +61,7 @@ class ParkingslotService {
           id: row.id,
           carpark_id: row.carpark_id,
           renter_id: row.renter_id,
-          floor: row.floor,
+          level: row.floor,
           unit: row.unit,
           verified: row.verified,
           vehicle_size: row.vehicle_size,

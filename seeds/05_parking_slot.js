@@ -21,9 +21,8 @@ exports.seed = function (knex) {
           floor: 3,
           unit: 12,
           verified: "true",
-          vehicle_size: "Passenger cars",
-          description:
-            "This is an area or building where people can leave their cars.",
+          vehicle_size: "Box Trucks",
+          description: "This is the description of parking slot A.",
         },
         {
           carpark_id: 3,
@@ -31,9 +30,8 @@ exports.seed = function (knex) {
           floor: 3,
           unit: 12,
           verified: "true",
-          vehicle_size: "Passenger cars",
-          description:
-            "This is an area or building where people can leave their cars.",
+          vehicle_size: "Pickup Trucks",
+          description: "This is the description of parking slot B.",
         },
         {
           carpark_id: 4,
@@ -41,9 +39,8 @@ exports.seed = function (knex) {
           floor: 3,
           unit: 12,
           verified: "true",
-          vehicle_size: "Passenger cars",
-          description:
-            "This is an area or building where people can leave their cars.",
+          vehicle_size: "Vans",
+          description: "This is the description of parking slot C.",
         },
         {
           carpark_id: 5,
@@ -52,8 +49,7 @@ exports.seed = function (knex) {
           unit: 12,
           verified: "true",
           vehicle_size: "Passenger cars",
-          description:
-            "This is an area or building where people can leave their cars.",
+          description: "This is the description of parking slot D.",
         },
       ]);
     });

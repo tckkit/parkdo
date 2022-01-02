@@ -49,33 +49,31 @@ class HistoryService {
         carpark_area: row.area,
         carpark_building: row.building,
         carpark_hourly_charge: row.hourly_charge,
-        booking_start_time: row.booking_start_time,
-        booking_end_time: row.booking_end_time,
-        actual_start_time: row.actual_start_time,
-        actual_end_time: row.actual_end_time,
+        booking_start_time: row.booking_start_time, //Time
+        booking_end_time: row.booking_end_time, //Time
+        actual_start_time: row.actual_start_time, //Time
+        actual_end_time: row.actual_end_time, //Time
         status: row.status,
-        status_last_update_time: row.updated_at,
+        status_last_update_time: row.updated_at, //Time
       }));
     });
   }
 
   readLease(userId) {
     let query = this.knex
-      .from("booking_record")
-      .innerJoin("carpark", "booking_record.carpark_id", "carpark.id")
+      .from("carpark")
       .innerJoin("area", "area.id", "carpark.area_id")
       .innerJoin("district", "district.id", "area.district_id")
       .innerJoin("region", "region.id", "district.region_id")
-      // .where("booking_record.tenant_id", userId) // Not in use
+      .innerJoin("booking_record", "booking_record.carpark_id", "carpark.id")
       .where("booking_record.renter_id", userId)
-      // .andWhere("id", orderId) // Not in use
       .orderBy("booking_record.id", "asc");
 
     return query.then((rows) => {
       // console.log(rows, "listed");
       return rows.map((row) => ({
         id: row.id,
-        created_at: row.created_at,
+        created_at: new Date(row.created_at).toLocaleString(),
         tenant_id: row.tenant_id,
         renter_id: row.renter_id,
         carpark_id: row.carpark_id,
@@ -84,33 +82,31 @@ class HistoryService {
         carpark_area: row.area,
         carpark_building: row.building,
         carpark_hourly_charge: row.hourly_charge,
-        booking_start_time: row.booking_start_time,
-        booking_end_time: row.booking_end_time,
-        actual_start_time: row.actual_start_time,
-        actual_end_time: row.actual_end_time,
+        booking_start_time: new Date(row.booking_start_time).toLocaleString(),
+        booking_end_time: new Date(row.booking_end_time).toLocaleString(),
+        actual_start_time: new Date(row.actual_start_time).toLocaleString(),
+        actual_end_time: new Date(row.actual_end_time).toLocaleString(),
         status: row.status,
-        status_last_update_time: row.updated_at,
+        status_last_update_time: new Date(row.updated_at).toLocaleString(),
       }));
     });
   }
 
   readRent(userId) {
     let query = this.knex
-      .from("booking_record")
-      .innerJoin("carpark", "booking_record.carpark_id", "carpark.id")
+      .from("carpark")
       .innerJoin("area", "area.id", "carpark.area_id")
       .innerJoin("district", "district.id", "area.district_id")
       .innerJoin("region", "region.id", "district.region_id")
+      .innerJoin("booking_record", "booking_record.carpark_id", "carpark.id")
       .where("booking_record.tenant_id", userId)
-      // .orWhere("booking_record.renter_id", userId) // Not in use
-      // .andWhere("id", orderId) // Not in use
       .orderBy("booking_record.id", "asc");
 
     return query.then((rows) => {
       // console.log(rows, "listed");
       return rows.map((row) => ({
         id: row.id,
-        created_at: row.created_at,
+        created_at: new Date(row.created_at).toLocaleString(),
         tenant_id: row.tenant_id,
         renter_id: row.renter_id,
         carpark_id: row.carpark_id,
@@ -119,12 +115,12 @@ class HistoryService {
         carpark_area: row.area,
         carpark_building: row.building,
         carpark_hourly_charge: row.hourly_charge,
-        booking_start_time: row.booking_start_time,
-        booking_end_time: row.booking_end_time,
-        actual_start_time: row.actual_start_time,
-        actual_end_time: row.actual_end_time,
+        booking_start_time: new Date(row.booking_start_time).toLocaleString(),
+        booking_end_time: new Date(row.booking_end_time).toLocaleString(),
+        actual_start_time: new Date(row.actual_start_time).toLocaleString(),
+        actual_end_time: new Date(row.actual_end_time).toLocaleString(),
         status: row.status,
-        status_last_update_time: row.updated_at,
+        status_last_update_time: new Date(row.updated_at).toLocaleString(),
       }));
     });
   }

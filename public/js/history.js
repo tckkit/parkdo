@@ -5,6 +5,7 @@ $(() => {
     axios
       .get("/history")
       .then(() => {
+        // <div class="pricing">+ $150</div>
         let handlebarCompile = Handlebars.compile(
           `{{#each history}}
                 <div class="history-block">
@@ -28,7 +29,6 @@ $(() => {
                   </div>
                   <div class="booking-info w-col w-col-3">
                     <div class="div-block-15">
-                      <div class="pricing">+ $150</div>
                       <div class="text-block-18">Transaction ID: {{this.id}}</div>
                       <div class="box-status complete">{{this.status}}</div>
                     </div>
@@ -54,6 +54,7 @@ $(() => {
     axios
       .get("/history")
       .then(() => {
+        // <div class="pricing">+ $150</div>
         let handlebarCompile = Handlebars.compile(
           `{{#each history}}
                 <div class="history-block">
@@ -77,7 +78,6 @@ $(() => {
                   </div>
                   <div class="booking-info w-col w-col-3">
                     <div class="div-block-15">
-                      <div class="pricing">+ $150</div>
                       <div class="text-block-18">Transaction ID: {{this.id}}</div>
                       <div class="box-status complete">{{this.status}}</div>
                     </div>
@@ -88,6 +88,25 @@ $(() => {
             `
         );
         $("#rent").html(handlebarCompile({ history: data }));
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.reload();
+      });
+  });
+});
+
+// Passing account details to /history
+$(() => {
+  var accountDetails = $.get(`/api/account`);
+  accountDetails.done(function (data) {
+    axios
+      .get("/history")
+      .then(() => {
+        let handlebarCompile = Handlebars.compile(`
+          {{username}}
+          `);
+        $("#username").html(handlebarCompile({ username: data[0].fname }));
       })
       .catch((err) => {
         console.log(err);

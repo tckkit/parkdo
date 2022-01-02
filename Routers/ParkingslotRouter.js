@@ -31,7 +31,7 @@ class ParkingslotRouter {
     this.parkingslotService
       .readparkingslot(userId, parkingslotId)
       .then((data) => {
-        res.render("parkingslot", data);
+        res.render("parkingslot", data[0]);
       });
   }
 

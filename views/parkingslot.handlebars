@@ -6,18 +6,22 @@
     <h3 class="heading">Parking Slot</h3><img src="/images/default-user-image.png" loading="lazy" width="150" height="150" alt="" class="account-image parking-slot">
     <div class="text-block-19">Upload new image</div>
     <div class="profile">
-      <div class="w-layout-grid profile-info">
-        <div>Parking Slot ID</div>
-        <div>ID</div>
-        <div>Location</div>
-        <div>Gee Tuck Building, Sheung Wan</div>
-        <div>Floor</div>
-        <div>2</div>
-        <div>Unit</div>
-        <div>B22</div>
-      </div>
+
+        <div class="w-layout-grid profile-info" id="parkingslotDetails">
+          <div>Parking Slot ID</div>
+          <div>{{id}}</div>
+          <div>Location</div>
+          <div>{{carpark_building}}, {{carpark_area}}, {{carpark_district}}</div>
+          <div>Floor</div>
+          <div>{{level}}</div>
+          <div>Unit</div>
+          <div>{{unit}}</div>
+        </div>
+      
+
       <div class="w-form">
-        <form id="email-form" name="email-form" data-name="Email Form" method="get"><textarea placeholder="" maxlength="5000" id="Desciption" name="Desciption" data-name="field" class="textarea w-input"></textarea></form>
+        <div>Description</div>
+        <form id="email-form" name="email-form" data-name="Email Form" method="get"><textarea placeholder="{{description}}" maxlength="5000" id="Desciption" name="Desciption" data-name="field" class="textarea w-input"></textarea></form>
         <div class="w-form-done"></div>
         <div class="w-form-fail"></div>
       </div>
