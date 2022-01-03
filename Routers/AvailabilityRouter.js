@@ -10,7 +10,7 @@ class AvailabilityRouter {
     router.get("/active", this.getActive.bind(this));
     router.get("/:id", this.get.bind(this));
     router.post("/:id", this.post.bind(this));
-    router.put("/avalability/:id", this.put.bind(this));
+    router.post("/delete/:id", this.put.bind(this));
     return router;
   }
   get(req, res) {
@@ -26,7 +26,7 @@ class AvailabilityRouter {
     return this.availabilityService
       .add(req.body.availStartTime, req.body.availEndTime, req.params.id)
       .then(() => {
-        res.redirect(req.get('referer'))
+        res.redirect("back")
       })
       .catch((err) => {
         res.status(500).json(err);

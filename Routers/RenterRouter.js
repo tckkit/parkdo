@@ -7,6 +7,7 @@ class RenterRouter {
   router() {
     let router = this.express.Router();
     router.post("/", this.post.bind(this));
+    router.put("/:id", this.put.bind(this));
     return router;
   }
 
@@ -14,6 +15,13 @@ class RenterRouter {
     console.log("User: ", req.session.passport.user)
     return this.createRenter
     .add(req.body, req.session.passport.user)
+    .catch((err) => {
+      res.status(500).json(err)});
+  }
+  put(req, res) {
+    console.log("putting")
+    return this.createRenter
+    .update(req.params.id, req.body.desciption)
     .catch((err) => {
       res.status(500).json(err)});
   }

@@ -57,9 +57,9 @@ $(() => {
         <div class="w-col w-col-3">
           <div class="text-block-21">{{this.end_time}}</div>
         </div>
-        
+        <form action="/api/availability/delete/{{this.id}}" method="post">
         <button class="remove-availability w-col w-col-3" data-id="{{this.id}}">Delete</button>
-        
+        </form>
           {{/each}}     
         {{else}}
           <div class="text-block-12">You have not registered any parking slots yet.</div>
@@ -69,15 +69,35 @@ $(() => {
           handlebarCompile({ slotAvailability: data })
         );
       })
+      .then(() => {
+        $("#availability-table").on("click", ".remove-availability", function (event) {
+
+        });
+      })
       .catch((err) => {
         console.log(err);
         window.location.reload();
       });
   });
 });
-e
 
 
-$(".remove-availability").on("click", function () {
-  console.log("duc jor")
+$("#description-form").on("blur", "textarea", (event) => {
+  console.log("I am editing");
+  console.log($(event.currentTarget).data("id"));
+
+  axios
+    .put("/api/renter/" + $(event.currentTarget).data("id"), {
+      desciption: $(event.currentTarget).val(),
+    })
+    .then(() => {
+      res.redirect(req.get('referer'))
+    })
+    .catch((e) => {
+      endSaving(event.currentTarget);
+      alert(e);
+    });
 });
+
+
+

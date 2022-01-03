@@ -27,6 +27,18 @@ class CreateRenter {
       }
     }
 
+    async update(id, description) {
+      if (typeof id !== "undefined") {
+        try {
+          return await this.knex("parking_slot")
+            .update({ description: description })
+            .where("id", id);
+        } catch (err) {
+          console.log("Update error", err);
+        }
+      }
+    }
+
      /*   async list(user) {
       if (typeof user !== "undefined") {
         try {

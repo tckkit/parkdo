@@ -50,14 +50,15 @@ class AvailabilityService {
   }
 
 
-  async deactivate(id, note, user) {
-    if (typeof user !== "undefined") {
+  async deactivate(id) {
+    console.log(id)
+    if (typeof id !== "undefined") {
       try {
-        return await this.knex("notes")
-          .update({ content: note })
-          .where("id", id);
+         await this.knex("availability")
+        .update({ active: false })
+        .where("id", id);
       } catch (err) {
-        console.log("Update error", err);
+        console.log("Parking slot has not registered yet.", error);
       }
     }
   }
