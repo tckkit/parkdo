@@ -1,45 +1,58 @@
 class CreateRenter {
-    constructor(knex, axios) {
-      this.knex = knex;
-      this.axios = axios;
-    }
-  
+  constructor(knex, axios) {
+    this.knex = knex;
+    this.axios = axios;
+  }
 
-  
-    async add(renterRegForm, userId) {
-      if (typeof userId !== "undefined") {
-        console.log("adding")
-        try {  
-          await this.knex
-            .insert({
-              carpark_id: renterRegForm.Building,
-              renter_id: userId,
-              floor: renterRegForm.Floor,
-              unit: renterRegForm.Unit,
-              verified: true,
-              vehicle_size: renterRegForm.vehicleSize,
-              description: renterRegForm.Description,
-            })
-            .into("parking_slot");
-        } catch (err) {
-          console.log("No such User", error);
-        }
+  async add(renterRegForm, userId) {
+    if (typeof userId !== "undefined") {
+      console.log("adding");
+      try {
+        await this.knex
+          .insert({
+            carpark_id: renterRegForm.Building,
+            renter_id: userId,
+            floor: renterRegForm.Floor,
+            unit: renterRegForm.Unit,
+            verified: true,
+            vehicle_size: renterRegForm.vehicleSize,
+            description: renterRegForm.Description,
+          })
+          .into("parking_slot");
+        await this.knex("account")
+          .update({ is_renter: true })
+          .where("id", userId);
+      } catch (err) {
+        console.log("No such User", error);
       }
     }
+  }
 
-    async update(id, description) {
-      if (typeof id !== "undefined") {
-        try {
-          return await this.knex("parking_slot")
-            .update({ description: description })
-            .where("id", id);
-        } catch (err) {
-          console.log("Update error", err);
-        }
+  async update(id, description) {
+    if (typeof id !== "undefined") {
+      try {
+        return await this.knex("parking_slot")
+          .update({ description: description })
+          .where("id", id);
+      } catch (err) {
+        console.log("Update error", err);
       }
     }
+  }
 
-     /*   async list(user) {
+  // async verify(userId) {
+  //   if (typeof userId !== "undefined") {
+  //     try {
+  //       await this.knex("account")
+  //         .update({ is_renter: true })
+  //         .where("id", userId);
+  //     } catch (err) {
+  //       console.log("Update error", err);
+  //     }
+  //   }
+  // }
+
+  /*   async list(user) {
       if (typeof user !== "undefined") {
         try {
           let query = await this.knex
@@ -79,6 +92,6 @@ class CreateRenter {
         }
       }
     } */
-  }
-  
-  module.exports = CreateRenter;
+}
+
+module.exports = CreateRenter;
