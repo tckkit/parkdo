@@ -88,6 +88,7 @@ class ListService {
         id: row.id,
         carpark_id: row.carpark_id,
         renter_id: row.renter_id,
+        parkingslot_id: row.parking_slot_id,
         floor: row.floor,
         unit: row.unit,
         verified: row.verified,
