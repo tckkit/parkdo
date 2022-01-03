@@ -58,6 +58,7 @@ class ViewRouter {
     res.render("renter-registration");
   }
   getListing(req, res) {
+    console.log('listing router')
     res.render("listing");
   }
   getAccount(req, res) {

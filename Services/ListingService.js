@@ -34,10 +34,11 @@ class ListService {
         .andWhere("availability.start_time", "<=", start)
         .andWhere("availability.end_time", ">=", end)
         .orderBy("availability.start_time", "asc");
-
+        
       console.log(query);
       return query.map((row) => ({
         id: row.id,
+        parkingslot_id: row.parking_slot_id,
         carpark_id: row.carpark_id,
         renter_id: row.renter_id,
         floor: row.floor,
