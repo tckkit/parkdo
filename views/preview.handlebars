@@ -1,4 +1,4 @@
-{{> navbar-user }}
+{{> navbar-guest }}
 
 
   <div class="columns w-row">
@@ -7,7 +7,7 @@
       <div class="hint-text">Filter and explore more slots</div>
 
       <div class="w-form">
-        <form id="filter-form" name="filter-form" data-name="filter Form" method="post" action="/listing">
+        <form id="filter-form" name="filter-form" data-name="filter Form" method="post" action="/preview">
           <label for="start" class="form-label">Start</label>
           <input type="datetime-local" class="w-input" maxlength="256" name="starttime" data-name="starttime" placeholder="" id="filter-start">
           <label for="end" class="form-label">End</label>
@@ -39,7 +39,6 @@
     </div>
     <div class="listing w-col w-col-9" id="listing">
       {{#each output}}
-
            <div class="div-block-10 testing">
             <div class="div-block-13"><img src="/images/img-placeholder.png" loading="lazy" width="140" height="140" alt="" class="image-4"></div>
             <div class="div-block-11">
@@ -57,7 +56,7 @@
                 </div>
                 <div class="pricing">$ {{ this.carpark_hourly_charge }}<br></div>
                 <div class="pricing currency">HKD/hr<br></div>
-                <button class="submit-button booking w-button" data-id="{{this.parkingslot_id}}">Book this !</button>
+                {{!-- <button class="submit-button booking w-button" data-id="{{this.parkingslot_id}}">Book this !</button> --}}
             </div>
             </div>
         {{/each}}

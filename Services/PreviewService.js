@@ -1,4 +1,4 @@
-class ListService {
+class PreviewService {
   constructor(knex) {
     this.knex = knex;
   }
@@ -113,4 +113,4 @@ class ListService {
   }
 }
 
-module.exports = ListService;
+module.exports = PreviewService;
