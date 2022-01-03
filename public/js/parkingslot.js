@@ -57,9 +57,9 @@ $(() => {
         <div class="w-col w-col-3">
           <div class="text-block-21">{{this.end_time}}</div>
         </div>
-        <div class="w-col w-col-3">
-        <button id="remove" data-id="{{this.id}}"><div class="text-block-22">Delete</div></button>
-        </div>
+        
+        <button class="remove-availability w-col w-col-3" data-id="{{this.id}}">Delete</button>
+        
           {{/each}}     
         {{else}}
           <div class="text-block-12">You have not registered any parking slots yet.</div>
@@ -75,7 +75,9 @@ $(() => {
       });
   });
 });
+e
 
-$("#remove").click(function() {
-   console.log("clicked");
- });
+
+$(".remove-availability").on("click", function () {
+  console.log("duc jor")
+});
