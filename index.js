@@ -84,11 +84,11 @@ const profilePicRouter = new ProfilePicRouter(
   express, fs, profilePicUpload);
 
 // ParkingSlotPic Upload Serviceset up
-//const ParkingslotPicUpload  = require("./Services/ParkingslotPicUpload");
-//const parkingslotPicUpload = new ParkingslotPicUpload(fs, axios);
+const ParkingslotPicUpload  = require("./Services/ParkingslotPicUpload");
+const parkingslotPicUpload = new ParkingslotPicUpload(fs, axios, uploadDirectory);
 // ParkingSlotPic Router set up
-//const ParkingslotPicRouter = require("./Routers/ParkingslotPicRouter");
-//const parkingslotPicRouter = new ParkingslotPicRouter(express, parkingSlotPicUpload);
+const ParkingslotPicRouter = require("./Routers/ParkingslotPicRouter");
+const parkingslotPicRouter = new ParkingslotPicRouter(express, fs, parkingslotPicUpload);
 
 //https set up
 const https = require("https");
@@ -134,7 +134,7 @@ app.use("/api/parkingslot", parkingslotApiRouter.router());
 app.use("/api/listing", listingRouter.router());
 app.use("/api/availability", availabilityRouter.router());
 app.use("/api/profilepic", profilePicRouter.router());
-
+app.use("/api/parkingslotimg", parkingslotPicRouter.router());
 app.use("/parkingslot", parkingslotRouter.router());
 
 https.createServer(options, app).listen(port, () => {

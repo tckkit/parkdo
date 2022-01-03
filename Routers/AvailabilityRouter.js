@@ -8,20 +8,42 @@ class AvailabilityRouter {
     let router = this.express.Router();
     router.get("/", this.getAll.bind(this));
     router.get("/active", this.getActive.bind(this));
-    router.post("/", this.post.bind(this));
-    router.put("/:id", this.put.bind(this));
+    router.get("/:id", this.get.bind(this));
+    router.post("/:id", this.post.bind(this));
+    router.put("/avalability/:id", this.put.bind(this));
     return router;
+  }
+  get(req, res) {
+    let slotId = req.params.id;
+    return this.availabilityService
+    .list(slotId)
+    .then((data) => {
+      res.send(data);
+    });
   }
 
   post(req, res) {
     return this.availabilityService
-      .add(req.body.starttime, req.body.endtime, req.peram.id)
+      .add(req.body.availStartTime, req.body.availEndTime, req.params.id)
+      .then(() => {
+        res.redirect(req.get('referer'))
+      })
       .catch((err) => {
         res.status(500).json(err);
       });
   }
 
-  put(req, res) {}
+  put(req, res) {
+    return this.availabilityService
+      .deactivate(req.params.id)
+      .then(() => {
+        res.redirect(req.get('referer'))
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  }
+
 
   getAll(req, res) {
     // let userId = req.session.passport.user;

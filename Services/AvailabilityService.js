@@ -21,25 +21,34 @@ class AvailabilityService {
     }
   }
 
-  /*   async list(user) {
-      if (typeof user !== "undefined") {
-        try {
-          let query = await this.knex
-            .select("notes.id", "notes.content")
-            .from("notes")
-            .innerJoin("users", "notes.user_id", "users.id")
-            .where("users.username", user)
-            .orderBy("notes.id", "desc");
-  
-          return query.map((row) => ({
-            id: row.id,
-            content: row.content,
-          }));
-        } catch (err) {
-          console.log("List error", err);
-        }
-      }
-    }*/
+  list(slotId) {
+   // let current = new Date.now()
+   // console.log("current", current)
+    let query = this.knex
+      .from("availability")
+      .where("parking_slot_id", slotId)
+    //  .andWhere("end_time", ">", current)
+      .andWhere("active", true)
+      .orderBy("availability.start_time", "asc");
+
+    return query.then((rows) => {
+      console.log(rows, "listed");
+      return rows.map((row) => ({
+
+        id: row.id,
+        date: new Date(row.start_time).toLocaleDateString(),
+        start_time: new Date(row.start_time).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        end_time: new Date(row.end_time).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      }));
+    });
+  }
+
 
   async deactivate(id, note, user) {
     if (typeof user !== "undefined") {

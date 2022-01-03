@@ -68,7 +68,10 @@ $(() => {
           <h3 class="heading">My Parking Slot</h3>
           {{#each parkingslotDetails}}
             <div class="div-block-10">
-                <div class="div-block-13"><img src="images/img-placeholder.png" loading="lazy" width="140" height="140" alt="" class="image-3">
+                <div class="div-block-13">
+                
+                <img src="/uploaded/{{this.id}}_parkingslot.jpeg" onerror="this.src='images/img-placeholder.png'" loading="lazy" width="140" height="140" alt="" class="account-image parking-slot">
+                
                 </div>
                 <div class="div-block-11">
                   <h5 class="heading-4 parking-slot-building">{{this.carpark_building}}</h5>
@@ -96,3 +99,6 @@ $(() => {
       });
   });
 });
+
+
+

@@ -1,15 +1,38 @@
 {{> navbar-user }}
 
- {{> add-availability-modal }}
+<!-- The Modal -->
+<div id="add-availability" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+    <form id="add-availability-form" method="post" action="/api/availability/{{id}}">
+        <h4>Add new availability:</h4>
+        <div class="div-block-4">
+            <label class="form-label">Start</label>
+            <label class="form-label">End</label>
+        </div>
+        <div class="div-block-4">
+        <!--<input type="hidden"  name="id" value="$id" />-->
+        <input type="datetime-local" class="text-field w-input" maxlength="256" name="availStartTime" data-name="availStartTime" placeholder="Example Text" id="avail-starttime" required=""> 
+        <input type="datetime-local" class="text-field-2 w-input" maxlength="256" name="availEndTime" data-name="availEndTime" placeholder="Example Text" id="avail-endtime" required=""></div>
+        <input type="submit" value="Add" class="submit-button w-button">
+
+    </form>
+  </div>
+</div>
 
 
 
 
   <div class="account wf-section">
-    <h3 class="heading">Parking Slot</h3><img src="/images/default-user-image.png" loading="lazy" width="150" height="150" alt="" class="account-image parking-slot">
+    <h3 class="heading">Parking Slot</h3>
 
-    <form id="parkingslot-pic-upload" method="post" action="/api/parkingslotpic" enctype="multipart/form-data">
-    <label>Upload parking slot picture</label>
+
+<div id="parkingslot-img-container"></div>
+
+    <form id="parkingslot-pic-upload" method="post" action="/api/parkingslotimg/{{id}}" enctype="multipart/form-data">
     <input type="file" name="file" accept="image/jpeg"/>
     <input type="submit" value="update" name="submit"/>
     </form>
@@ -54,14 +77,11 @@
         <button id="open-form"><i class="fas fa-plus-square"></i> add new availability</button>
       </div>
     </div>
-    <div class="column-content w-row" id="available-table">
-
-
-
-
-
+ 
+    <div class="column-content w-row">
+   <div id="availability-table"></div>
     </div>
   </div>
 
-  {{>script}}
+{{>script}}
 <script src="/js/parkingslot.js"></script>
