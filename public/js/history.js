@@ -6,6 +6,9 @@ $(() => {
       .get("/history")
       .then(() => {
         // <div class="pricing">+ $150</div>
+        // <div class="box-item-text">Actual</div>
+        // <div class="box-item-text">{{this.actual_start_time}}</div>
+        // <div class="box-item-text">{{this.actual_end_time}}</div>
         let handlebarCompile = Handlebars.compile(
           `{{#each history}}
                 <div class="history-block">
@@ -22,9 +25,7 @@ $(() => {
                       <div class="box-item-text">Booking</div>
                       <div class="box-item-text">{{this.booking_start_time}}</div>
                       <div class="box-item-text">{{this.booking_end_time}}</div>
-                      <div class="box-item-text">Actual</div>
-                      <div class="box-item-text">{{this.actual_start_time}}</div>
-                      <div class="box-item-text">{{this.actual_end_time}}</div>
+
                     </div>
                   </div>
                   <div class="booking-info w-col w-col-3">
@@ -55,6 +56,9 @@ $(() => {
       .get("/history")
       .then(() => {
         // <div class="pricing">+ $150</div>
+        // <div class="box-item-text">Actual</div>
+        // <div class="box-item-text">{{this.actual_start_time}}</div>
+        // <div class="box-item-text">{{this.actual_end_time}}</div>
         let handlebarCompile = Handlebars.compile(
           `{{#each history}}
                 <div class="history-block">
@@ -71,9 +75,7 @@ $(() => {
                       <div class="box-item-text">Booking</div>
                       <div class="box-item-text">{{this.booking_start_time}}</div>
                       <div class="box-item-text">{{this.booking_end_time}}</div>
-                      <div class="box-item-text">Actual</div>
-                      <div class="box-item-text">{{this.actual_start_time}}</div>
-                      <div class="box-item-text">{{this.actual_end_time}}</div>
+
                     </div>
                   </div>
                   <div class="booking-info w-col w-col-3">
@@ -127,17 +129,17 @@ $("#rent-filter").click(function () {
   $("#rent").css("display", "block");
 });
 
-
 // Passing account details to /account (for icon image)
 $(() => {
   var accountDetails = $.get(`/api/profilepic`);
   accountDetails.done(function (data) {
-
     axios
       .get("/history")
       .then(() => {
-        console.log(data)
-        $("#profilePic-history").html(`<img id="profilepic-img" src="${data}" loading="lazy" width="100" height="100" alt="" class="account-image">`);
+        console.log(data);
+        $("#profilePic-history").html(
+          `<img id="profilepic-img" src="${data}" loading="lazy" width="100" height="100" alt="" class="account-image">`
+        );
       })
       .catch((err) => {
         console.log(err);

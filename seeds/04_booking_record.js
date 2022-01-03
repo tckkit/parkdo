@@ -37,7 +37,7 @@ exports.seed = function (knex) {
         // Completed booking record
         {
           tenant_id: "2",
-          renter_id: "4",
+          renter_id: "5",
           carpark_id: "4",
           booking_start_time: "2021-12-23T11:00:00",
           booking_end_time: "2021-12-23T15:45:00",

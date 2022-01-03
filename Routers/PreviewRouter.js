@@ -1,7 +1,7 @@
 class PreviewRouter {
-  constructor(express, listingservice) {
+  constructor(express, previewservice) {
     this.express = express;
-    this.listingservice = listingservice;
+    this.previewservice = previewservice;
   }
 
   router() {
@@ -17,7 +17,7 @@ class PreviewRouter {
     // console.log(
     // `Posting StartTime:${req.body.starttime},  EndTime:${req.body.endtime} AT ${req.body.location}`
     // );
-    return this.listingservice
+    return this.previewservice
       .list(req.body.starttime, req.body.endtime, req.body.location)
       .then((data) => {
         // console.log("checking data", data);
@@ -28,7 +28,7 @@ class PreviewRouter {
 
   getActive(req, res) {
     // let userId = req.session.passport.user;
-    this.listingservice.readActive().then((data) => {
+    this.previewservice.readActive().then((data) => {
       res.render("preview", { output: data });
       // res.send(data);
     });
