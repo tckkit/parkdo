@@ -161,6 +161,10 @@ a.w--current {
   text-align: center;
 }
 
+button.stripe-button-el{
+  margin-top: 20px !important;
+}
+
 button.stripe-button-el,
 button.stripe-button-el span {
   width: 100%;
