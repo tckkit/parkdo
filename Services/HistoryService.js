@@ -73,7 +73,7 @@ class HistoryService {
       // console.log(rows, "listed");
       return rows.map((row) => ({
         id: row.id,
-        created_at: new Date(row.created_at).toLocaleString(),
+        created_at: new Date(row.created_at).toLocaleDateString(),
         tenant_id: row.tenant_id,
         renter_id: row.renter_id,
         carpark_id: row.carpark_id,
@@ -82,10 +82,31 @@ class HistoryService {
         carpark_area: row.area,
         carpark_building: row.building,
         carpark_hourly_charge: row.hourly_charge,
-        booking_start_time: new Date(row.booking_start_time).toLocaleString(),
-        booking_end_time: new Date(row.booking_end_time).toLocaleString(),
-        actual_start_time: new Date(row.actual_start_time).toLocaleString(),
-        actual_end_time: new Date(row.actual_end_time).toLocaleString(),
+        booking_start_time: new Date(row.booking_start_time).toLocaleTimeString(
+          [],
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        ),
+        booking_end_time: new Date(row.booking_end_time).toLocaleTimeString(
+          [],
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        ),
+        actual_start_time: new Date(row.actual_start_time).toLocaleTimeString(
+          [],
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        ),
+        actual_end_time: new Date(row.actual_end_time).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
         status: row.status,
         status_last_update_time: new Date(row.updated_at).toLocaleString(),
       }));
@@ -106,7 +127,7 @@ class HistoryService {
       // console.log(rows, "listed");
       return rows.map((row) => ({
         id: row.id,
-        created_at: new Date(row.created_at).toLocaleString(),
+        created_at: new Date(row.created_at).toLocaleDateString(),
         tenant_id: row.tenant_id,
         renter_id: row.renter_id,
         carpark_id: row.carpark_id,
@@ -115,10 +136,31 @@ class HistoryService {
         carpark_area: row.area,
         carpark_building: row.building,
         carpark_hourly_charge: row.hourly_charge,
-        booking_start_time: new Date(row.booking_start_time).toLocaleString(),
-        booking_end_time: new Date(row.booking_end_time).toLocaleString(),
-        actual_start_time: new Date(row.actual_start_time).toLocaleString(),
-        actual_end_time: new Date(row.actual_end_time).toLocaleString(),
+        booking_start_time: new Date(row.booking_start_time).toLocaleTimeString(
+          [],
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        ),
+        booking_end_time: new Date(row.booking_end_time).toLocaleTimeString(
+          [],
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        ),
+        actual_start_time: new Date(row.actual_start_time).toLocaleTimeString(
+          [],
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        ),
+        actual_end_time: new Date(row.actual_end_time).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
         status: row.status,
         status_last_update_time: new Date(row.updated_at).toLocaleString(),
       }));

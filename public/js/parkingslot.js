@@ -13,23 +13,20 @@ window.onclick = function (event) {
   }
 };
 
-
-
-
-
 $(() => {
-  console.log(window.location.pathname)
-  var pathname = window.location.pathname
-  var slotId = pathname.replace("/parkingslot/", "")
+  console.log(window.location.pathname);
+  var pathname = window.location.pathname;
+  var slotId = pathname.replace("/parkingslot/", "");
   var slotImg = $.get(`/api/parkingslotimg/${slotId}`);
-  console.log("pathname",slotImg)
+  console.log("pathname", slotImg);
   slotImg.done(function (data) {
-
     axios
       .get(`/parkingslot/${slotId}`)
       .then(() => {
-        console.log("data", data)
-        $("#parkingslot-img-container").html(`<img id="parkingslot-img" src="${data}" loading="lazy" width="100" height="100" alt="" class="account-image parking-slot">`);
+        console.log("data", data);
+        $("#parkingslot-img-container").html(
+          `<img id="parkingslot-img" src="${data}" loading="lazy" width="100" height="100" alt="" class="account-image parking-slot">`
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -38,13 +35,12 @@ $(() => {
   });
 });
 
-
 $(() => {
-  console.log(window.location.pathname)
-  var pathname = window.location.pathname
-  var slotId = pathname.replace("/parkingslot/", "")
+  console.log(window.location.pathname);
+  var pathname = window.location.pathname;
+  var slotId = pathname.replace("/parkingslot/", "");
   var slotAvailability = $.get(`/api/availability/${slotId}`);
-  
+
   slotAvailability.done(function (data) {
     axios
       .get(`/parkingslot/${slotId}`)
@@ -80,7 +76,6 @@ $(() => {
   });
 });
 
-
-$(".remove").on("click",() => {
-console.log("clicked")
-});
+// $(".remove").click(function () {
+//   console.log("clicked");
+// });
