@@ -1,39 +1,4 @@
-{{> navbar-user }}
-
-
-<!-- The Modal -->
-<div id="confirmation-box" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-
-    <form id="add-availability-form" method="post" action="">
-        <h4>Booking Confirmation</h4>
-        <div class="div-block-4">
-            <label class="form-label">Arrival Time</label>
-            <label class="form-label">Leave Time</label>
-        </div>
-        <div class="div-block-4">
-        <!--<input type="hidden"  name="id" value="$id" />-->
-        <input type="datetime-local" class="text-field w-input" maxlength="256" name="availStartTime" data-name="availStartTime" placeholder="Example Text" id="avail-starttime" required=""> 
-        <input type="datetime-local" class="text-field-2 w-input" maxlength="256" name="availEndTime" data-name="availEndTime" placeholder="Example Text" id="avail-endtime" required=""></div>
-        <p id="availability-warning">Please choose within the available time slots.</p>
-        <p>Carpark:<span id="carpark-input"></span></p>
-        <p>Location:<span id="location-input"></span></p>
-        <p>Duration:<span id="duration-input"></span></p>
-        <p>Hourly Rate:<span id="hrlyrate-input"></span></p>
-        <p>Total Price:<span id="price-calculation"></span></p>
-        <input type="submit" value="Checkout" class="submit-button w-button">
-
-    </form>
-  </div>
-</div>
-
-
-
-
-
+{{> navbar-guest }}
 
 
   <div class="columns w-row">
@@ -42,7 +7,7 @@
       <div class="hint-text">Filter and explore more slots</div>
 
       <div class="w-form">
-        <form id="filter-form" name="filter-form" data-name="filter Form" method="post" action="/listing">
+        <form id="filter-form" name="filter-form" data-name="filter Form" method="post" action="/preview">
           <label for="start" class="form-label">Start</label>
           <input type="datetime-local" class="w-input" maxlength="256" name="starttime" data-name="starttime" placeholder="" id="filter-start">
           <label for="end" class="form-label">End</label>
@@ -74,7 +39,6 @@
     </div>
     <div class="listing w-col w-col-9" id="listing">
       {{#each output}}
-
            <div class="div-block-10 testing">
             <div class="div-block-13"><img src="/images/img-placeholder.png" loading="lazy" width="140" height="140" alt="" class="image-4"></div>
             <div class="div-block-11">
@@ -92,9 +56,7 @@
                 </div>
                 <div class="pricing">$ {{ this.carpark_hourly_charge }}<br></div>
                 <div class="pricing currency">HKD/hr<br></div>
-                <form action="/api/booking" method="post">
-                <button id="book-this-btn"class="submit-button booking w-button" data-id="{{this.parkingslot_id}}">Book this !</button>
-                </form>
+                {{!-- <button class="submit-button booking w-button" data-id="{{this.parkingslot_id}}">Book this !</button> --}}
             </div>
             </div>
         {{/each}}
@@ -102,4 +64,4 @@
   </div>
 
    {{>script}}
-<script src="/js/listing.js"></script>
+<!--<script src="/js/listing.js"></script>-->

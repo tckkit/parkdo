@@ -68,6 +68,13 @@ const listingservice = new ListingService(knex, axios);
 const ListingRouter = require("./Routers/ListingRouter");
 const listingRouter = new ListingRouter(express, listingservice);
 
+// PreviewService set up
+const PreviewService = require("./Services/PreviewService");
+const previewservice = new PreviewService(knex, axios);
+// PreviewRouter set up
+const PreviewRouter = require("./Routers/PreviewRouter");
+const previewRouter = new PreviewRouter(express, previewservice);
+
 // AvailabilityService set up
 const AvailabilityService = require("./Services/AvailabilityService");
 const availabilityservice = new AvailabilityService(knex, axios);
@@ -83,11 +90,19 @@ const ProfilePicRouter = require("./Routers/ProfilePicRouter");
 const profilePicRouter = new ProfilePicRouter(express, fs, profilePicUpload);
 
 // ParkingSlotPic Upload Serviceset up
-const ParkingslotPicUpload  = require("./Services/ParkingslotPicUpload");
-const parkingslotPicUpload = new ParkingslotPicUpload(fs, axios, uploadDirectory);
+const ParkingslotPicUpload = require("./Services/ParkingslotPicUpload");
+const parkingslotPicUpload = new ParkingslotPicUpload(
+  fs,
+  axios,
+  uploadDirectory
+);
 // ParkingSlotPic Router set up
 const ParkingslotPicRouter = require("./Routers/ParkingslotPicRouter");
-const parkingslotPicRouter = new ParkingslotPicRouter(express, fs, parkingslotPicUpload);
+const parkingslotPicRouter = new ParkingslotPicRouter(
+  express,
+  fs,
+  parkingslotPicUpload
+);
 
 // ListingService set up
 const BookingService = require("./Services/BookingService");
@@ -138,6 +153,7 @@ app.use("/api/account", accountApiRouter.router());
 app.use("/api/renter", renterRouter.router());
 app.use("/api/parkingslot", parkingslotApiRouter.router());
 app.use("/listing", listingRouter.router());
+app.use("/preview", previewRouter.router());
 app.use("/api/availability", availabilityRouter.router());
 app.use("/api/profilepic", profilePicRouter.router());
 app.use("/api/parkingslotimg", parkingslotPicRouter.router());

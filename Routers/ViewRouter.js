@@ -27,7 +27,7 @@ class ViewRouter {
       isLoggedIn,
       this.getRenterReg.bind(this)
     );
-    router.get("/listing", this.getListing.bind(this));
+    // router.get("/listing", this.getListing.bind(this));
     router.get("/account", isLoggedIn, this.getAccount.bind(this));
     router.get("/parkingslot", isLoggedIn, this.getManage.bind(this));
     return router;
@@ -57,10 +57,10 @@ class ViewRouter {
   getRenterReg(req, res) {
     res.render("renter-registration");
   }
-  getListing(req, res) {
-    console.log('listing router')
-    res.render("listing");
-  }
+  // getListing(req, res) {
+  //   console.log('listing router')
+  //   res.render("listing");
+  // }
   getAccount(req, res) {
     res.render("account");
   }

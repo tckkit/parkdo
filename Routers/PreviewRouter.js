@@ -1,11 +1,4 @@
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login"); // or redirect to '/signup'
-}
-
-class ListingRouter {
+class PreviewRouter {
   constructor(express, listingservice) {
     this.express = express;
     this.listingservice = listingservice;
@@ -14,8 +7,8 @@ class ListingRouter {
   router() {
     let router = this.express.Router();
 
-    router.post("/", isLoggedIn, this.post.bind(this));
-    router.get("/", isLoggedIn, this.getActive.bind(this));
+    router.post("/", this.post.bind(this));
+    router.get("/", this.getActive.bind(this));
     return router;
   }
 
@@ -28,7 +21,7 @@ class ListingRouter {
       .list(req.body.starttime, req.body.endtime, req.body.location)
       .then((data) => {
         // console.log("checking data", data);
-        res.render("listing", { output: data });
+        res.render("preview", { output: data });
       })
       .catch((err) => res.status(500).json(err));
   }
@@ -36,10 +29,10 @@ class ListingRouter {
   getActive(req, res) {
     // let userId = req.session.passport.user;
     this.listingservice.readActive().then((data) => {
-      res.render("listing", { output: data });
+      res.render("preview", { output: data });
       // res.send(data);
     });
   }
 }
 
-module.exports = ListingRouter;
+module.exports = PreviewRouter;

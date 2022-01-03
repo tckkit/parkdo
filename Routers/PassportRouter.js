@@ -42,14 +42,31 @@ module.exports = (express) => {
     res.render("login");
   });
 
-  router.post(
-    "/login",
-    passport.authenticate("local-login", {
-      successRedirect: "/listing",
-      failureRedirect: "/login",
-    })
-    // res.render("secret");
-  );
+  // router.post(
+  //   "/login",
+  //   passport.authenticate("local-login", {
+  //     successRedirect: "/listing",
+  //     failureRedirect: "/login",
+  //   })
+  //   // res.render("secret");
+  // );
+
+  router.post("/login", function (req, res, next) {
+    passport.authenticate("local-login", function (err, user, info) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.redirect("/login");
+      }
+      req.logIn(user, function (err) {
+        if (err) {
+          return next(err);
+        }
+        return res.redirect("/listing");
+      });
+    })(req, res, next);
+  });
 
   // signup route
   router.get("/signup", (req, res) => {
