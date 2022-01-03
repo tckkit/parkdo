@@ -50,7 +50,7 @@ exports.seed = function (knex) {
         },
         {
           parking_slot_id: 1,
-          start_time: "2022-01-08T14:00:00",
+          start_time: "2022-01-07T14:00:00",
           end_time: "2022-01-07T21:00:00",
           active: true,
         },

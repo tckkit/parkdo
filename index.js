@@ -80,8 +80,7 @@ const ProfilePicUpload = require("./Services/ProfilePicUpload");
 const profilePicUpload = new ProfilePicUpload(fs, axios, uploadDirectory);
 // ProfilePic Router set up
 const ProfilePicRouter = require("./Routers/ProfilePicRouter");
-const profilePicRouter = new ProfilePicRouter(
-  express, fs, profilePicUpload);
+const profilePicRouter = new ProfilePicRouter(express, fs, profilePicUpload);
 
 // ParkingSlotPic Upload Serviceset up
 const ParkingslotPicUpload  = require("./Services/ParkingslotPicUpload");
@@ -131,7 +130,7 @@ app.use("/api/history", historyApiRouter.router());
 app.use("/api/account", accountApiRouter.router());
 app.use("/api/renter", renterRouter.router());
 app.use("/api/parkingslot", parkingslotApiRouter.router());
-app.use("/api/listing", listingRouter.router());
+app.use("/listing", listingRouter.router());
 app.use("/api/availability", availabilityRouter.router());
 app.use("/api/profilepic", profilePicRouter.router());
 app.use("/api/parkingslotimg", parkingslotPicRouter.router());

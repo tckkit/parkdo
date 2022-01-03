@@ -36,18 +36,17 @@ $(() => {
   });
 });
 
-
-
 // Passing account details to /account (for icon image)
 $(() => {
   var accountDetails = $.get(`/api/profilepic`);
   accountDetails.done(function (data) {
-
     axios
       .get("/account")
       .then(() => {
-        console.log(data)
-        $("#profilePic").html(`<img id="profilepic-img" src="${data}" loading="lazy" width="100" height="100" alt="" class="account-image">`);
+        console.log(data);
+        $("#profilePic").html(
+          `<img id="profilepic-img" src="${data}" loading="lazy" width="100" height="100" alt="" class="account-image">`
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +76,7 @@ $(() => {
                   <h5 class="heading-4 parking-slot-building">{{this.carpark_building}}</h5>
                   <div class="parking-slot-area">{{this.carpark_area}}, {{this.carpark_district}} </div>
                   <div class="vehicle-size">{{this.vehicle_size}}</div>
-                  <div class="description">{{this.vehicle_size}}</div>
+                  <div class="description">{{this.description}}</div>
                 </div>
                 <div class="div-block-12">
                   <a href="/parkingslot/{{this.id}}" class="submit-button edit w-button">Edit</a>

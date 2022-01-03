@@ -16,15 +16,31 @@
       <div class="text-block-2">Find your parking slot NOW</div>
       <div class="text-block-6">or schedule for later?</div>
       <div class="w-form">
-        <form id="index-form" name="index-form" data-name="index-form" method="post" action="/api/listing" class="form">
+        <form id="index-form" name="index-form" data-name="index-form" method="post" action="/listing" class="form">
           <div class="div-block-4">
         <input type="datetime-local" class="text-field w-input" maxlength="256" name="starttime" data-name="starttime" placeholder="Example Text" id="index-starttime" required=""> 
         <input type="datetime-local" class="text-field-2 w-input" maxlength="256" name="endtime" data-name="endtime" placeholder="Example Text" id="index-endtime" required=""></div>
-            <select id="field" name="field" data-name="Field" class="select-field w-select">
-            <option value="">Pick a location</option>
-            <option value="Sheung-Wan">Sheung Wan</option>
-            <option value="Yau-Ma-Tei">Yau Ma Tei</option>
-\          </select><input type="submit" value="Submit" data-wait="Please wait..." class="submit-button w-button">
+            <select id="field" name="location" data-name="Field" class="select-field w-select">
+            <option value="">Pick a district</option>
+            <option value="Islands">Islands</option>
+            <option value="Kwai Tsing">Kwai Tsing</option>
+            <option value="North">North</option>
+            <option value="Sai Kung">Sai Kung</option>
+            <option value="Sha Tin">Sha Tin</option>
+            <option value="Tai Po">Tai Po</option>
+            <option value="Tsuen Wan">Tsuen Wan</option>
+            <option value="Yuen Long">Yuen Long</option>
+            <option value="Kowloon City">Kowloon City</option>
+            <option value="Kwun Tong">Kwun Tong</option>
+            <option value="Sham Shui Po">Sham Shui Po</option>
+            <option value="Wong Tai Sin">Wong Tai Sin</option>
+            <option value="Yau Tsim Mong">Yau Tsim Mong</option>
+            <option value="Central and Western">Central and Western</option>
+            <option value="Eastern">Eastern</option>
+            <option value="Southern">Southern</option>
+            <option value="Wan Chai">Wan Chai</option>
+          </select>
+          <input type="submit" value="Submit" data-wait="Please wait..." class="submit-button w-button">
         </form>
         <div class="w-form-done"></div>
         <div class="w-form-fail"></div>
