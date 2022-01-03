@@ -161,6 +161,18 @@ a.w--current {
   text-align: center;
 }
 
+button.stripe-button-el,
+button.stripe-button-el span {
+  width: 100%;
+  border-radius: 25px;
+  background-color: #036 !important;
+  background-image: none;
+  text-align: center;
+  font-family: 'Readex Pro', sans-serif !important;
+}
+
+
+
 .submit-button.filtering {
   width: auto;
   padding: 7px 30px;
@@ -664,7 +676,6 @@ a.w--current {
 }
 
 .nav-link.w--current {
-  border-bottom: 2px solid #333;
   color: #333;
 }
 
@@ -998,4 +1009,17 @@ display: none
 #availability-warning{
   color: #e25a44;
   display: none;
+}
+
+.caution{
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+footer{
+  text-align: center;
+  color: white;
+  background-color: #999;
+  padding: 50px;
+  margin-top: 100px;
 }

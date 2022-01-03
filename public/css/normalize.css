@@ -82,9 +82,25 @@ a {
  * Improve readability of focused elements when they are also in an
  * active/hover state.
  */
+
+
+
+
+a:visited,
+a:link,
 a:active,
 a:hover {
-  outline: 0;
+  outline: none;
+  color: #333;
+  text-decoration: none;
+}
+
+
+.submit-button:visited,
+.submit-button:link,
+.submit-button:active,
+.submit-button:hover{
+ color: white !important;
 }
 /* Text-level semantics
    ========================================================================== */

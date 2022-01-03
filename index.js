@@ -5,6 +5,13 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+//Stripe set up
+const keyPublishable = process.env.STRIPE_KEY;
+const keySecret = process.env.STRIPE_SECRET;
+const stripe = require("stripe")(keySecret);
+app.set("view engine", "pug");
+app.use(require("body-parser").urlencoded({extended: false}));
+
 // axios set up
 const axios = require("axios");
 
@@ -111,6 +118,10 @@ const bookingservice = new BookingService(knex, axios);
 const BookingRouter = require("./Routers/BookingRouter");
 const bookingRouter = new BookingRouter(express, bookingservice);
 
+// Stripe Router set up
+const StripeRouter = require("./Routers/StripeRouter");
+const stripeRouter = new StripeRouter(express, stripe);
+
 //https set up
 const https = require("https");
 
@@ -159,6 +170,7 @@ app.use("/api/profilepic", profilePicRouter.router());
 app.use("/api/parkingslotimg", parkingslotPicRouter.router());
 app.use("/api/booking", bookingRouter.router());
 app.use("/parkingslot", parkingslotRouter.router());
+app.use("/charge", stripeRouter.router());
 
 https.createServer(options, app).listen(port, () => {
   console.log(`application listening to https://localhost:${port}`);

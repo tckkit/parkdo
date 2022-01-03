@@ -43,7 +43,7 @@ $(() => {
 
   slotAvailability.done(function (data) {
     axios
-      .get(`/paaxiosrkingslot/${slotId}`)
+      .get(`/parkingslot/${slotId}`)
       .then(() => {
         let handlebarCompile = Handlebars.compile(`
         {{#if slotAvailability}}
@@ -58,7 +58,7 @@ $(() => {
           <div class="text-block-21">{{this.end_time}}</div>
         </div>
         <div class="w-col w-col-3">
-        <button class="remove" data-id="{{this.id}}"><div class="text-block-22">Delete</div></button>
+        <button id="remove" data-id="{{this.id}}"><div class="text-block-22">Delete</div></button>
         </div>
           {{/each}}     
         {{else}}
@@ -76,6 +76,6 @@ $(() => {
   });
 });
 
-// $(".remove").click(function () {
-//   console.log("clicked");
-// });
+$("#remove").click(function() {
+   console.log("clicked");
+ });
