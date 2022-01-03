@@ -43,7 +43,7 @@ $(() => {
 
   slotAvailability.done(function (data) {
     axios
-      .get(`/parkingslot/${slotId}`)
+      .get(`/paaxiosrkingslot/${slotId}`)
       .then(() => {
         let handlebarCompile = Handlebars.compile(`
         {{#if slotAvailability}}

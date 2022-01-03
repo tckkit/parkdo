@@ -19,7 +19,6 @@ class ListingRouter {
     return this.listingservice
       .list(req.body.starttime, req.body.endtime, req.body.location)
       .then((data) => {
-        console.log("checking data", data)
         res.render("listing", {output:data})})
       .catch((err) => res.status(500).json(err));
   }

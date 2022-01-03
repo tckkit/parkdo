@@ -995,5 +995,7 @@ display: none
   object-fit: cover;
 }
 
-#profile-pic-upload{
+#availability-warning{
+  color: #e25a44;
+  display: none;
 }

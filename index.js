@@ -89,6 +89,13 @@ const parkingslotPicUpload = new ParkingslotPicUpload(fs, axios, uploadDirectory
 const ParkingslotPicRouter = require("./Routers/ParkingslotPicRouter");
 const parkingslotPicRouter = new ParkingslotPicRouter(express, fs, parkingslotPicUpload);
 
+// ListingService set up
+const BookingService = require("./Services/BookingService");
+const bookingservice = new BookingService(knex, axios);
+// ListingRouter set up
+const BookingRouter = require("./Routers/BookingRouter");
+const bookingRouter = new BookingRouter(express, bookingservice);
+
 //https set up
 const https = require("https");
 
@@ -134,6 +141,7 @@ app.use("/listing", listingRouter.router());
 app.use("/api/availability", availabilityRouter.router());
 app.use("/api/profilepic", profilePicRouter.router());
 app.use("/api/parkingslotimg", parkingslotPicRouter.router());
+app.use("/api/booking", bookingRouter.router());
 app.use("/parkingslot", parkingslotRouter.router());
 
 https.createServer(options, app).listen(port, () => {
