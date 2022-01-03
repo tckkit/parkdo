@@ -17,6 +17,7 @@ class ParkingslotRouter {
     const router = this.express.Router();
     router.get("/", isLoggedIn, this.getAllSlots.bind(this));
     router.get("/:id", isLoggedIn, this.getSlot.bind(this));
+    router.get("/details/:id", isLoggedIn, this.getSlotDetails.bind(this));
     return router;
   }
 
@@ -32,6 +33,16 @@ class ParkingslotRouter {
       .readparkingslot(userId, parkingslotId)
       .then((data) => {
         res.render("parkingslot", data[0]);
+      });
+  }
+
+  getSlotDetails(req, res) {
+    let paramId = req.params.id;
+    let parkingslotId = parseInt(paramId);
+    this.parkingslotService
+      .readparkingslotDetails(parkingslotId)
+      .then((data) => {
+        res.send(data);
       });
   }
 

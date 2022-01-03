@@ -11,23 +11,26 @@
     <form id="add-availability-form" method="post" action="">
         <h4>Booking Confirmation</h4>
         <div class="div-block-4">
-            <label class="form-label">Arrival Time</label>
-            <label class="form-label">Leave Time</label>
+            <label class="form-label" >Arrival Time</label>
+            <label class="form-label" >Leave Time</label>
         </div>
         <div class="div-block-4">
-        <!--<input type="hidden"  name="id" value="$id" />-->
-        <input type="datetime-local" class="text-field w-input" maxlength="256" name="availStartTime" data-name="availStartTime" placeholder="Example Text" id="avail-starttime" required=""> 
-        <input type="datetime-local" class="text-field-2 w-input" maxlength="256" name="availEndTime" data-name="availEndTime" placeholder="Example Text" id="avail-endtime" required=""></div>
+        <input id="bookingArrivalTime" type="datetime-local" class="text-field w-input" maxlength="256" name="bookingArrivalTime" data-name="bookingArrivalTime" placeholder="Example Text" id="avail-starttime" required=""> 
+        <input id="bookingLeaveTime" type="datetime-local" class="text-field-2 w-input" maxlength="256" name="bookingLeaveTime" data-name="bookingLeaveTime" placeholder="Example Text" id="avail-endtime" required=""></div>
         <p id="availability-warning">Please choose within the available time slots.</p>
-        <p>Carpark:<span id="carpark-input"></span></p>
-        <p>Location:<span id="location-input"></span></p>
-        <p>Duration:<span id="duration-input"></span></p>
-        <p>Hourly Rate:<span id="hrlyrate-input"></span></p>
-        <p>Total Price:<span id="price-calculation"></span></p>
+       
+      
+       
+        <div id="bookingDetails">
+          {{bookingDetails}}
+        </div>
+        <div id="price">
+        </div>
+
+
         <form action="/charge" method="post">
         <script class="stripe-button" data-key="pk_test_51KDoS7KMUKzKlen5mhcEHgX4tMjt1pTkiEbYx2xXMghzfKkLyOxsvkAfAJNJRLQq8y45Pf7MShkdlW9Jjo8d6qvD00KwfD4GUV" src="//checkout.stripe.com/v2/checkout.js" data-locale="auto" data-description="Booking Charge" data-amount="50000"></script>
         </form>
-
     </form>
   </div>
 </div>
@@ -94,10 +97,7 @@
                 </div>
                 <div class="pricing">$ {{ this.carpark_hourly_charge }}<br></div>
                 <div class="pricing currency">HKD/hr<br></div>
-                <!--<form action="/api/booking" method="post">-->
-
-                <button id="book-this-btn"class="submit-button booking w-button" data-id="{{this.parkingslot_id}}">Book this !</button>
-
+                <button class="submit-button booking w-button book-this-btn" data-id="{{this.parkingslot_id}}">Book this ! </button>
             </div>
             </div>
         {{/each}}
